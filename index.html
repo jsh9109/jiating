@@ -756,7 +756,35 @@ var _hmt = _hmt || [];
                     </button>
                     
                     <div style="text-align: center; margin: 20px 0; color: #aaa; font-size: 0.9em;">或</div>
-                    
+    
+    <!-- 👇 添加这段代码显示收款码 -->
+    <div style="text-align: center; margin: 20px 0;">
+        <p style="color: #666; margin-bottom: 15px; font-size: 1.05em; font-weight: bold;">📱 扫码支付 ¥4.9</p>
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <div style="text-align: center;">
+                <img src="https://jsh9109.github.io/heian/wechat_qrcode.jpg" 
+                     alt="微信收款码" 
+                     onerror="this.parentElement.style.display='none'" 
+                     style="width: 160px; height: 160px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 3px solid #07C160;">
+                <p style="color: #07C160; font-size: 0.9em; margin-top: 8px; font-weight: bold;">💚 微信支付</p>
+            </div>
+            <div style="text-align: center;">
+                <img src="https://jsh9109.github.io/heian/alipay_qrcode.png" 
+                     alt="支付宝收款码" 
+                     onerror="this.parentElement.style.display='none'" 
+                     style="width: 160px; height: 160px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 3px solid #00A3EE;">
+                <p style="color: #00A3EE; font-size: 0.9em; margin-top: 8px; font-weight: bold;">💙 支付宝支付</p>
+            </div>
+        </div>
+        <p style="color: #999; font-size: 0.85em; margin-top: 15px; line-height: 1.6;">
+            💡 长按图片保存 → 打开微信/支付宝 → 扫一扫 → 相册选择
+        </p>
+    </div>
+    
+    <div style="text-align: center; margin: 20px 0; color: #aaa; font-size: 0.9em;">或</div>
+    
+    <!-- 👇 下面是复制账号的部分 -->
+    <div style="background: #f8f9fa; padding: 12px; ...">
                     <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
                         <span style="color: #333; font-size: 0.95em;">jsh9109</span>
                         <button onclick="copyToClipboard('jsh9109', this)" style="padding: 8px 14px; background: #FFB347; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制微信</button>
