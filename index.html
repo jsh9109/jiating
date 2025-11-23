@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原生家庭健康度测试 - 你的童年伤痕有多深？</title>
+    
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d597963808dc6d91484ad4fd2fafb693";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #FFF4E0 0%, #FFE4E1 50%, #E0F8E0 100%);
+            min-height: 100vh;
+            padding: 15px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 25px;
+            padding: 35px 25px;
+            box-shadow: 0 15px 50px rgba(255, 179, 71, 0.2);
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #FFB347, #90EE90, #FFB347);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 12px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #FF8C42 0%, #6BBF59 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .header h1:after {
+            content: '🏠';
+            position: absolute;
+            right: -35px;
+            top: -5px;
+            font-size: 0.5em;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.05em;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFB347 0%, #90EE90 100%);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-top: 8px;
+            box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
+        }
+        
+        .dimensions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .dimension-card {
+            background: linear-gradient(135deg, #FFF9F0 0%, #F0FFF0 100%);
+            padding: 20px;
+            border-radius: 18px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dimension-card:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 179, 71, 0.1) 0%, transparent 70%);
+            transition: transform 0.5s;
+        }
+        
+        .dimension-card:hover:before {
+            transform: translate(25%, 25%);
+        }
+        
+        .dimension-card:hover {
+            transform: translateY(-5px);
+            border-color: #FFB347;
+            box-shadow: 0 10px 25px rgba(255, 179, 71, 0.3);
+        }
+        
+        .dimension-icon {
+            font-size: 2.5em;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        
+        .dimension-name {
+            color: #FF8C42;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        
+        .dimension-desc {
+            color: #888;
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+        
+        .features-list {
+            background: linear-gradient(135deg, #FFF9F0 0%, #F0FFF0 100%);
+            padding: 22px;
+            border-radius: 18px;
+            margin: 25px 0;
+            border-left: 4px solid #FFB347;
+        }
+        
+        .features-list h3 {
+            color: #FF8C42;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+        
+        .features-list ul {
+            list-style: none;
+            padding-left: 0;
+            margin-left: 0;
+        }
+        
+        .features-list li {
+            padding: 8px 0;
+            padding-left: 0;
+            color: #666;
+            font-size: 0.95em;
+            border-bottom: 1px dashed #FFE4C4;
+            transition: padding-left 0.3s;
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .features-list li:hover {
+            padding-left: 10px;
+        }
+        
+        .features-list li:before {
+            content: "🌱 ";
+            margin-right: 8px;
+            margin-left: 0;
+        }
+        
+        .input-group {
+            margin: 25px 0;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #FFE4C4;
+            border-radius: 15px;
+            font-size: 1em;
+            text-align: center;
+            transition: all 0.3s;
+            background: #FAFAFA;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #FFB347;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(255, 179, 71, 0.15);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 12px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #FFB347 0%, #90EE90 100%);
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 179, 71, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 179, 71, 0.5);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #FF8C42;
+            border: 2px solid #FFB347;
+        }
+        
+        .btn-secondary:hover {
+            background: #FFF9F0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #FFE4C4;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FFB347 0%, #90EE90 100%);
+            transition: width 0.3s;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 179, 71, 0.5);
+        }
+        
+        .progress-text {
+            color: #FF8C42;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 25px;
+            font-size: 1em;
+        }
+        
+        .question-card {
+            background: linear-gradient(135deg, #FFF9F0 0%, #F0FFF0 100%);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .question-text {
+            color: #333;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .option {
+            padding: 15px;
+            background: white;
+            border: 2px solid #FFE4C4;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1em;
+            color: #666;
+        }
+        
+        .option:hover {
+            border-color: #FFB347;
+            background: #FFF9F0;
+            transform: translateX(5px);
+        }
+        
+        .option.selected {
+            background: linear-gradient(135deg, #FFB347 0%, #90EE90 100%);
+            color: white;
+            border-color: #FFB347;
+            box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
+        }
+        
+        .result-banner {
+            background: linear-gradient(135deg, #FF8C42 0%, #6BBF59 100%);
+            color: white;
+            padding: 35px 25px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .result-banner:before {
+            content: '🏠';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2em;
+            opacity: 0.3;
+        }
+        
+        .result-banner:after {
+            content: '🌈';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 2em;
+            opacity: 0.3;
+        }
+        
+        .result-banner h2 {
+            font-size: 1.8em;
+            margin-bottom: 12px;
+        }
+        
+        .rpi-score {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin: 18px 0;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .rpi-level {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            backdrop-filter: blur(10px);
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 380px;
+            margin: 30px 0;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+        }
+        
+        .scores-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 25px 0;
+        }
+        
+        .score-item {
+            background: linear-gradient(135deg, #FFF9F0 0%, #F0FFF0 100%);
+            padding: 18px;
+            border-radius: 12px;
+            border-left: 4px solid #FFB347;
+            transition: transform 0.3s;
+        }
+        
+        .score-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .score-item-name {
+            color: #FF8C42;
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: 0.95em;
+        }
+        
+        .score-item-value {
+            font-size: 1.6em;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .score-item-desc {
+            color: #999;
+            font-size: 0.85em;
+            margin-top: 4px;
+        }
+        
+        .type-card {
+            background: linear-gradient(135deg, #FFF9F0 0%, #F0FFF0 100%);
+            padding: 25px;
+            border-radius: 18px;
+            margin: 25px 0;
+            border: 2px solid #FFB347;
+        }
+        
+        .type-card h3 {
+            color: #FF8C42;
+            font-size: 1.6em;
+            margin-bottom: 12px;
+        }
+        
+        .type-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1em;
+        }
+        
+        .characteristics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .characteristic-item {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .characteristic-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .characteristic-title {
+            color: #FF8C42;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        
+        .characteristic-list {
+            font-size: 0.85em;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .unlock-section {
+            background: linear-gradient(135deg, #FFF9F0 0%, #F0FFF0 100%);
+            padding: 35px 25px;
+            border-radius: 20px;
+            margin: 35px 0;
+            border: 3px solid #FFB347;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .unlock-section:before {
+            content: '💝';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 3em;
+            opacity: 0.1;
+        }
+        
+        .unlock-section h3 {
+            color: #FF6B35;
+            font-size: 1.7em;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .price-tag {
+            text-align: center;
+            margin: 25px 0;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.1em;
+        }
+        
+        .current-price {
+            color: #FF6B35;
+            font-size: 2.8em;
+            font-weight: bold;
+            margin: 8px 0;
+            text-shadow: 0 2px 4px rgba(255,107,53,0.2);
+        }
+        
+        .price-note {
+            color: #666;
+            font-size: 0.85em;
+            line-height: 1.5;
+        }
+        
+        .admin-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #BBB;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .admin-link:hover {
+            color: #FFB347;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .card {
+                padding: 25px 18px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .dimensions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .characteristics {
+                grid-template-columns: 1fr;
+            }
+            
+            .scores-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart-container {
+                height: 300px;
+            }
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 卡密验证页 -->
+        <div id="cardVerifyPage" class="card">
+            <div class="header">
+                <h1>原生家庭健康度测试</h1>
+                <p>你的童年伤痕有多深？</p>
+                <p style="font-size: 0.95em; color: #FF8C42;">了解原生家庭对你的影响 🌱</p>
+                <span class="badge">基于心理学家庭系统理论的专业评估</span>
+            </div>
+            
+            <div class="input-group">
+                <input type="text" id="cardInput" placeholder="请输入测评卡号" maxlength="20">
+            </div>
+            
+            <button class="btn btn-primary" onclick="verifyCard()">开始测评 🏠</button>
+            
+            <div class="dimensions-grid" style="margin-top: 30px;">
+                <div class="dimension-card">
+                    <div class="dimension-icon">💝</div>
+                    <div class="dimension-name">情感支持度</div>
+                    <div class="dimension-desc">父母的爱与关怀</div>
+                </div>
+                <div class="dimension-card">
+                    <div class="dimension-icon">🚪</div>
+                    <div class="dimension-name">边界健康度</div>
+                    <div class="dimension-desc">个人空间与尊重</div>
+                </div>
+                <div class="dimension-card">
+                    <div class="dimension-icon">💬</div>
+                    <div class="dimension-name">沟通模式</div>
+                    <div class="dimension-desc">家庭内部交流</div>
+                </div>
+                <div class="dimension-card">
+                    <div class="dimension-icon">🛡️</div>
+                    <div class="dimension-name">安全感指数</div>
+                    <div class="dimension-desc">稳定与保护感</div>
+                </div>
+            </div>
+            
+            <div class="features-list">
+                <h3>测评包含</h3>
+                <ul>
+                    <li>40题专业心理量表</li>
+                    <li>4大核心维度深度分析</li>
+                    <li>原生家庭健康度评分</li>
+                    <li><strong style="color:#FF6B35;">完整治愈指南+成长建议 (¥4.9解锁)</strong></li>
+                </ul>
+            </div>
+            
+            <div class="admin-link" onclick="showAdminPanel()">管理员入口 →</div>
+        </div>
+        
+        <!-- 测试页 -->
+        <div id="testPage" class="card hidden">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">第1题 / 共40题</div>
+            
+            <div class="question-card">
+                <div class="question-text" id="questionText"></div>
+                <div class="options" id="optionsContainer"></div>
+            </div>
+            
+            <div style="display: flex; gap: 12px; margin-top: 20px;">
+                <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()" style="display: none;">← 上一题</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">下一题 →</button>
+            </div>
+        </div>
+        <!-- 免费结果页 -->
+        <div id="freeResultPage" class="card hidden">
+            <div class="result-banner">
+                <h2>你的原生家庭健康度报告</h2>
+                <p style="font-size: 1.1em; margin-top: 10px; opacity: 0.95;">基础版</p>
+                <div class="rpi-score" id="archetypeIcon">🌤️</div>
+                <div class="rpi-level" id="archetypeName">轻度创伤</div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="radarChart"></canvas>
+            </div>
+            
+            <div class="scores-list" id="scoresList"></div>
+            
+            <div class="type-card">
+                <h3 id="typeName">轻度创伤</h3>
+                <p id="typeDesc">你的原生家庭存在一些问题，但整体还算健康。这些经历对你有一定影响，但不至于造成严重创伤。</p>
+            </div>
+            
+            <div class="characteristics">
+                <div class="characteristic-item">
+                    <div class="characteristic-title">🌱 影响表现</div>
+                    <div class="characteristic-list">
+                        • 偶尔自我怀疑<br>
+                        • 关系中有些敏感<br>
+                        • 情绪偶尔波动
+                    </div>
+                </div>
+                <div class="characteristic-item">
+                    <div class="characteristic-title">💪 成长方向</div>
+                    <div class="characteristic-list">
+                        • 提升自我接纳<br>
+                        • 学习情绪管理<br>
+                        • 建立健康边界
+                    </div>
+                </div>
+                <div class="characteristic-item">
+                    <div class="characteristic-title">🌈 治愈建议</div>
+                    <div class="characteristic-list">
+                        • 心理咨询<br>
+                        • 阅读疗愈书籍<br>
+                        • 建立支持系统
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #FFF9F0 0%, #F0FFF0 100%); padding: 20px; border-radius: 15px; margin: 20px 0; border-left: 4px solid #FFB347;">
+                <h4 style="color: #FF8C42; margin-bottom: 12px; font-size: 1.1em;">🌱 基础建议（免费版）</h4>
+                <ul style="list-style: none; padding-left: 0; line-height: 1.8; color: #666;">
+                    <li style="padding: 6px 0;">🏠 认识到：原生家庭不是你的错</li>
+                    <li style="padding: 6px 0;">🏠 接纳过去：童年无法改变，但可以疗愈</li>
+                    <li style="padding: 6px 0;">🏠 深度分析：付费版有完整治愈方案</li>
+                </ul>
+            </div>
+            
+            <div class="unlock-section">
+                <h3>
+                    你的<strong style="color: #FF6B35;">基础版</strong>报告已出 🌱<br>
+                    解锁 <strong style="color: #FF6B35;">完整治愈指南</strong> 开启疗愈之旅
+                </h3>
+                
+                <div style="background: white; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                    <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #FFE4C4;">
+                        <span style="color: #999;">基础诊断（分数）</span>
+                        <span style="color: #FF6B35; font-weight: bold;">→ 深度创伤分析</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #FFE4C4;">
+                        <span style="color: #999;">简单建议（3条）</span>
+                        <span style="color: #FF6B35; font-weight: bold;">→ 个性化治愈方案</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #FFE4C4;">
+                        <span style="color: #999;">无影响分析</span>
+                        <span style="color: #FF6B35; font-weight: bold;">→ 当前生活影响解析</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 12px 0;">
+                        <span style="color: #999;">无疗愈资源</span>
+                        <span style="color: #FF6B35; font-weight: bold;">→ 书籍+咨询推荐</span>
+                    </div>
+                </div>
+                
+                <div class="price-tag">
+                    <div class="original-price">原价 ¥29.9</div>
+                    <div class="current-price">¥4.9</div>
+                    <div class="price-note">限时特惠 · 开启疗愈之旅 · 拥抱内在小孩</div>
+                </div>
+                
+                <h4 style="text-align: center; color: #FF8C00; margin: 30px 0 15px 0; font-size: 1.2em;">
+                    💳 选择支付方式
+                </h4>
+                
+                <div style="max-width: 400px; margin: 0 auto;">
+                    <a href="https://qr.alipay.com/tsx15981nt9c4aydmvo2h3d" target="_blank" style="display: flex; align-items: center; justify-content: center; padding: 14px; background: #00A3EE; color: white; text-decoration: none; border-radius: 12px; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(0,163,238,0.3);">
+                        <span style="margin-right: 6px;">⚡</span> 支付宝快捷支付
+                    </a>
+                    <button onclick="alert('请保存下方微信收款码，打开微信扫码支付')" style="width: 100%; display: flex; align-items: center; justify-content: center; padding: 14px; background: #07C160; color: white; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 12px rgba(7,193,96,0.3); font-size: 1em;">
+                        <span style="margin-right: 6px;">⚡</span> 微信快捷支付
+                    </button>
+                    
+                    <div style="text-align: center; margin: 20px 0; color: #aaa; font-size: 0.9em;">或</div>
+                    
+                    <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: #333; font-size: 0.95em;">jsh9109</span>
+                        <button onclick="copyToClipboard('jsh9109', this)" style="padding: 8px 14px; background: #FFB347; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制微信</button>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: #333; font-size: 0.95em;">313360631@qq.com</span>
+                        <button onclick="copyToClipboard('313360631@qq.com', this)" style="padding: 8px 14px; background: #FFB347; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制支付宝</button>
+                    </div>
+                </div>
+                
+                <h4 style="text-align: center; color: #FF8C00; margin: 30px 0 15px 0; font-size: 1.2em;">
+                    📸 上传付款截图
+                </h4>
+                
+                <label for="paymentProofInput" class="btn btn-primary" style="margin-top: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    📸 点击上传截图，立即查看完整报告
+                </label>
+                <input type="file" id="paymentProofInput" accept="image/*" onchange="handlePaymentProof(event)" style="display: none;">
+                
+                <div style="text-align: center; margin-top: 18px; padding: 12px; background: rgba(255,179,71,0.1); border-radius: 10px;">
+                    <p style="color: #FF8C42; font-size: 0.85em; margin: 0;">
+                        🔒 上传截图后立即解锁完整报告，开启疗愈之旅
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 完整报告页 -->
+        <div id="fullReportPage" class="card hidden">
+            <div style="background: linear-gradient(135deg, #07C160 0%, #05A650 100%); color: white; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 25px;">
+                <h3 style="margin-bottom: 8px; font-size: 1.4em;">✅ 完整报告已解锁！</h3>
+                <p style="font-size: 1em; opacity: 0.95;">深度分析报告如下，建议保存本页面</p>
+                <p style="font-size: 0.85em; margin-top: 8px; opacity: 0.9;">
+                    💡 可以截图保存或收藏本页面链接
+                </p>
+            </div>
+            
+            <div class="result-banner">
+                <h2>你的原生家庭完整报告</h2>
+                <div class="rpi-score" id="fullFamilyScore">68%</div>
+                <div class="rpi-level" id="fullFamilyLevel">轻度创伤 - 健康度68%</div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="fullRadarChart"></canvas>
+            </div>
+            
+            <div style="background: white; padding: 30px; border-radius: 15px; margin: 25px 0; border-left: 5px solid #FFB347;">
+                <h3 style="color: #FF8C42; font-size: 1.6em; margin-bottom: 15px;">📋 第一部分：你的家庭健康度深度解析</h3>
+                <div id="fullAnalysis">
+                    <h4 style="color: #FF6B35; margin: 20px 0 10px 0;">🏠 你的家庭类型：轻度创伤家庭</h4>
+                    <p style="color: #666; line-height: 1.8;">
+                        你的原生家庭健康度为68%，属于轻度创伤类型。虽然存在一些问题，但整体环境还算稳定。
+                        你的父母可能在某些方面做得不够好（比如情感表达、边界尊重等），但他们也有爱你的方式。
+                        这些经历对你产生了一定影响，但不至于造成严重的心理创伤。
+                    </p>
+                    
+                    <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">💡 各维度详细分析</h4>
+                    <div style="background: #FFF9F0; padding: 20px; border-radius: 12px; margin: 15px 0;">
+                        <p style="color: #666; line-height: 1.8; margin-bottom: 12px;"><strong style="color: #FF8C42;">情感支持度：</strong>你的父母可能不太擅长表达爱，但他们的关心以其他方式体现（比如物质供养、督促学习）。你可能渴望更多的情感回应和认可。</p>
+                        <p style="color: #666; line-height: 1.8; margin-bottom: 12px;"><strong style="color: #FF8C42;">边界健康度：</strong>父母可能有时会过度干涉你的生活，或者相反，对你疏于关注。你可能在建立个人边界方面感到困难。</p>
+                        <p style="color: #666; line-height: 1.8; margin-bottom: 12px;"><strong style="color: #FF8C42;">沟通模式：</strong>家里可能存在沟通不畅的问题，或者有时会用不太健康的方式（比如冷战、指责）解决冲突。</p>
+                        <p style="color: #666; line-height: 1.8;"><strong style="color: #FF8C42;">安全感指数：</strong>整体环境相对稳定，但可能有一些让你感到不安的因素（比如父母争吵、经济压力等）。</p>
+                    </div>
+                    
+                    <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">🎯 对当前生活的影响</h4>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 15px 0;">
+                        <div style="background: linear-gradient(135deg, #FFE4E1 0%, #FFF0F5 100%); padding: 20px; border-radius: 12px;">
+                            <h5 style="color: #FF6B35; margin-bottom: 12px;">💔 亲密关系影响</h5>
+                            <ul style="color: #666; line-height: 1.8; padding-left: 20px; font-size: 0.95em;">
+                                <li>可能害怕被抛弃或拒绝</li>
+                                <li>在表达情感时感到困难</li>
+                                <li>对伴侣的某些行为过度敏感</li>
+                                <li>容易陷入不安全的依恋模式</li>
+                            </ul>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #E0F8E0 0%, #F0FFF0 100%); padding: 20px; border-radius: 12px;">
+                            <h5 style="color: #6BBF59; margin-bottom: 12px;">🌱 自我认知影响</h5>
+                            <ul style="color: #666; line-height: 1.8; padding-left: 20px; font-size: 0.95em;">
+                                <li>偶尔会自我怀疑或否定</li>
+                                <li>对他人评价比较在意</li>
+                                <li>完美主义倾向</li>
+                                <li>需要外界认可才觉得有价值</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: white; padding: 30px; border-radius: 15px; margin: 25px 0; border-left: 5px solid #FFB347;">
+                <h3 style="color: #FF8C42; font-size: 1.6em; margin-bottom: 15px;">💝 第二部分：疗愈与成长建议</h3>
+                
+                <h4 style="color: #FF6B35; margin: 20px 0 10px 0;">🌈 疗愈的第一步：看见与接纳</h4>
+                <div style="background: #FFF9F0; padding: 20px; border-radius: 12px; margin: 15px 0;">
+                    <p style="color: #666; line-height: 1.8; margin-bottom: 12px;">
+                        <strong style="color: #FF8C42;">1. 看见童年的自己：</strong>
+                        闭上眼睛，想象小时候的你。你在经历什么？感受到什么？试着对那个小孩说："我看见你了，你很勇敢。"
+                    </p>
+                    <p style="color: #666; line-height: 1.8; margin-bottom: 12px;">
+                        <strong style="color: #FF8C42;">2. 接纳父母的局限：</strong>
+                        父母也是普通人，他们有自己的创伤和局限。他们给不了你的东西，可能是因为他们自己也没有得到过。
+                    </p>
+                    <p style="color: #666; line-height: 1.8;">
+                        <strong style="color: #FF8C42;">3. 允许自己悲伤：</strong>
+                        为童年没有得到的爱悲伤是正常的。不要压抑这些情绪，给自己时间去感受和释放。
+                    </p>
+                </div>
+                
+                <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">📅 30天疗愈计划</h4>
+                <div style="background: linear-gradient(135deg, #E0F8E0 0%, #F0FFF0 100%); padding: 20px; border-radius: 12px; margin: 15px 0;">
+                    <p style="color: #555; line-height: 1.8; margin-bottom: 12px;">
+                        <strong style="color: #6BBF59;">第1-10天：自我觉察</strong><br>
+                        每天写日记，记录3个童年记忆和它们如何影响现在的你。允许自己去感受情绪，不评判。
+                    </p>
+                    <p style="color: #555; line-height: 1.8; margin-bottom: 12px;">
+                        <strong style="color: #6BBF59;">第11-20天：重建自我</strong><br>
+                        每天对镜子里的自己说3句肯定的话。开始做一件让你快乐的事（画画、运动、音乐等）。
+                    </p>
+                    <p style="color: #555; line-height: 1.8;">
+                        <strong style="color: #6BBF59;">第21-30天：建立新模式</strong><br>
+                        在人际关系中练习设立边界。尝试表达真实感受，即使感到不舒服。
+                    </p>
+                </div>
+                
+                <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">📚 推荐疗愈资源</h4>
+                <div style="background: #FFF9F0; padding: 20px; border-radius: 12px; margin: 15px 0;">
+                    <p style="color: #666; margin-bottom: 12px;"><strong style="color: #FF8C42;">📖 必读书籍：</strong></p>
+                    <ul style="color: #666; line-height: 2; padding-left: 20px;">
+                        <li>《原生家庭：如何修补自己的性格缺陷》- 苏珊·福沃德</li>
+                        <li>《被忽视的孩子》- 乔尼丝·韦布</li>
+                        <li>《身体从未忘记》- 贝塞尔·范德考克</li>
+                        <li>《拥抱你的内在小孩》- 一行禅师</li>
+                    </ul>
+                    
+                    <p style="color: #666; margin: 20px 0 12px 0;"><strong style="color: #FF8C42;">🎧 推荐播客/课程：</strong></p>
+                    <ul style="color: #666; line-height: 2; padding-left: 20px;">
+                        <li>武志红的心理课</li>
+                        <li>简单心理 Uni</li>
+                        <li>得到APP《亲密关系30讲》</li>
+                    </ul>
+                    
+                    <p style="color: #666; margin: 20px 0 12px 0;"><strong style="color: #FF8C42;">💬 专业帮助：</strong></p>
+                    <ul style="color: #666; line-height: 2; padding-left: 20px;">
+                        <li>简单心理（专业心理咨询平台）</li>
+                        <li>壹心理（在线心理服务）</li>
+                        <li>本地医院心理科（如有严重困扰）</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="background: white; padding: 30px; border-radius: 15px; margin: 25px 0; border-left: 5px solid #FFB347;">
+                <h3 style="color: #FF8C42; font-size: 1.6em; margin-bottom: 15px;">🌟 第三部分：给你的话</h3>
+                
+                <div style="background: linear-gradient(135deg, #FFF9F0 0%, #FFE4E1 100%); padding: 25px; border-radius: 12px; margin: 15px 0; border: 2px solid #FFB347;">
+                    <p style="color: #666; line-height: 2; font-size: 1.05em; text-align: center;">
+                        <strong style="color: #FF6B35; font-size: 1.2em;">你不需要"治愈"，因为你从未破碎</strong><br><br>
+                        
+                        原生家庭的经历塑造了你，但不能定义你。<br>
+                        你是一个独立的个体，有权利过自己想要的生活。<br><br>
+                        
+                        疗愈不是为了成为"更好的人"，<br>
+                        而是为了成为"真实的自己"。<br><br>
+                        
+                        请记住：<br>
+                        <strong style="color: #FF8C42;">你值得被爱，你值得幸福，你值得温柔以待。</strong><br><br>
+                        
+                        无论童年经历了什么，<br>
+                        现在的你都可以选择给自己一个拥抱，<br>
+                        告诉内心的小孩："我会照顾好你。"
+                    </p>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #FFB347 0%, #90EE90 100%); color: white; padding: 25px; border-radius: 15px; text-align: center; margin: 25px 0;">
+                <h3 style="margin-bottom: 12px; font-size: 1.4em;">🌈 感谢你的勇气</h3>
+                <p style="font-size: 0.95em; opacity: 0.95; line-height: 1.6;">
+                    能够正视原生家庭问题，这本身就需要很大的勇气<br>
+                    建议保存本页面，在疗愈路上随时回顾<br>
+                    祝你在成长的道路上越来越好 🌱
+                </p>
+            </div>
+            
+            <button class="btn btn-secondary" onclick="location.reload()">重新测评</button>
+        </div>
+        
+        <!-- 管理员后台 -->
+        <div id="adminPanel" class="card hidden">
+            <h2 style="color: #FF8C42; margin-bottom: 25px; text-align: center;">🔐 管理员后台</h2>
+            <div class="input-group">
+                <input type="password" id="adminPassword" placeholder="请输入管理员密码">
+            </div>
+            <button class="btn btn-primary" onclick="verifyAdmin()">登录</button>
+            
+            <div id="adminContent" class="hidden"></div>
+        </div>
+    </div>
+    <script>
+        // ==================== [配置区] ====================
+        const CUSTOMER_SERVICE_WECHAT = 'jsh9109';
+        const ADMIN_PASSWORD = 'lss900201';
+        const MASTER_CODE = "FAMILY-MASTER";
+        // ==================================================
+        
+        /* 40道原生家庭测试题目 */
+        const questions = [
+            /* 维度A: 情感支持度 (10题) */
+            {text: '我的父母经常对我说"我爱你"或类似的话。', dimension: 0},
+            {text: '当我难过时，父母会安慰和倾听我。', dimension: 0},
+            {text: '我觉得父母真正关心我的感受。', dimension: 0},
+            {text: '我在家里感到被接纳和被爱。', dimension: 0},
+            {text: '父母很少表达对我的爱和关心。', dimension: 0, reverse: true},
+            {text: '我可以向父母分享我的喜怒哀乐。', dimension: 0},
+            {text: '我常觉得自己是家里的负担。', dimension: 0, reverse: true},
+            {text: '父母会肯定和赞美我的努力。', dimension: 0},
+            {text: '我从小就觉得自己不够好。', dimension: 0, reverse: true},
+            {text: '家里有人会在我需要时给我拥抱。', dimension: 0},
+            
+            /* 维度B: 边界健康度 (10题) */
+            {text: '父母尊重我的隐私和个人空间。', dimension: 1},
+            {text: '父母经常翻看我的日记、手机或私人物品。', dimension: 1, reverse: true},
+            {text: '我可以自由表达与父母不同的观点。', dimension: 1},
+            {text: '父母总是替我做决定，不征求我的意见。', dimension: 1, reverse: true},
+            {text: '家里的规则是合理且公平的。', dimension: 1},
+            {text: '父母经常用"为你好"控制我的选择。', dimension: 1, reverse: true},
+            {text: '我有自己的独立空间（房间或私人区域）。', dimension: 1},
+            {text: '父母会用我的秘密威胁或要挟我。', dimension: 1, reverse: true},
+            {text: '父母鼓励我培养独立思考能力。', dimension: 1},
+            {text: '我觉得自己像父母的附属品，而非独立个体。', dimension: 1, reverse: true},
+            
+            /* 维度C: 沟通模式 (10题) */
+            {text: '家里有问题时，我们会坐下来好好沟通。', dimension: 2},
+            {text: '父母经常对我大吼大叫。', dimension: 2, reverse: true},
+            {text: '我敢在父母面前表达真实想法。', dimension: 2},
+            {text: '家里经常冷战，谁也不理谁。', dimension: 2, reverse: true},
+            {text: '父母会认真倾听我的意见。', dimension: 2},
+            {text: '父母经常说伤人的话（贬低、嘲讽）。', dimension: 2, reverse: true},
+            {text: '我们家能平和地解决分歧。', dimension: 2},
+            {text: '我小时候经常目睹父母激烈争吵。', dimension: 2, reverse: true},
+            {text: '父母会向我道歉，承认自己的错误。', dimension: 2},
+            {text: '我在家里要小心翼翼，怕说错话。', dimension: 2, reverse: true},
+            
+            /* 维度D: 安全感指数 (10题) */
+            {text: '我小时候在家感到安全和放松。', dimension: 3},
+            {text: '我经历过家庭暴力（身体或精神）。', dimension: 3, reverse: true},
+            {text: '家里的经济状况比较稳定。', dimension: 3},
+            {text: '我小时候经常担心父母会离婚或分开。', dimension: 3, reverse: true},
+            {text: '我相信父母会保护我。', dimension: 3},
+            {text: '我曾目睹或经历过家庭成员的自杀/自残行为。', dimension: 3, reverse: true},
+            {text: '家里很少发生让我感到恐惧的事。', dimension: 3},
+            {text: '我小时候经常被忽视或独自留在家里。', dimension: 3, reverse: true},
+            {text: '父母的情绪比较稳定可预测。', dimension: 3},
+            {text: '我小时候经常担惊受怕，不知道下一刻会发生什么。', dimension: 3, reverse: true}
+        ];
+        
+        const options = ['完全不符合', '不太符合', '不确定', '比较符合', '非常符合'];
+        
+        let currentPage = 'verify';
+        let currentQuestion = 0;
+        let answers = new Array(40).fill(0);
+        let currentCard = null;
+        
+        function getDeviceFingerprint() {
+            try {
+                let canvasFingerprint = '';
+                try {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    if (ctx) {
+                        ctx.textBaseline = 'top';
+                        ctx.font = '14px Arial';
+                        ctx.fillText('fingerprint', 2, 2);
+                        canvasFingerprint = canvas.toDataURL().slice(-50);
+                    }
+                } catch (e) {
+                    canvasFingerprint = Date.now().toString();
+                }
+                
+                const fingerprint = [
+                    navigator.userAgent || 'unknown',
+                    navigator.language || 'unknown',
+                    (screen.width || 0) + 'x' + (screen.height || 0),
+                    screen.colorDepth || 0,
+                    new Date().getTimezoneOffset(),
+                    canvasFingerprint
+                ].join('|');
+                
+                let hash = 0;
+                for (let i = 0; i < fingerprint.length; i++) {
+                    const char = fingerprint.charCodeAt(i);
+                    hash = ((hash << 5) - hash) + char;
+                    hash = hash & hash;
+                }
+                
+                return 'device_' + Math.abs(hash).toString(36);
+            } catch (error) {
+                return 'device_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            }
+        }
+        
+        function verifyCard() {
+            const cardInput = document.getElementById('cardInput');
+            const cardCode = cardInput.value.trim().toUpperCase();
+            
+            if (cardCode === MASTER_CODE) {
+                currentCard = MASTER_CODE;
+                showTestPage(); 
+                return;
+            }
+            
+            if (!cardCode) {
+                alert('请输入测评卡号');
+                return;
+            }
+            
+            if (!/^[A-Z0-9\-]{8,20}$/.test(cardCode)) {
+                alert('卡号格式不正确');
+                return;
+            }
+            
+            const deviceId = getDeviceFingerprint();
+            let cards = JSON.parse(localStorage.getItem('familyCards') || '[]');
+            let card = cards.find(c => c.code === cardCode);
+            
+            if (!card) {
+                card = { 
+                    code: cardCode, 
+                    deviceId: deviceId,
+                    createdAt: new Date().toISOString(),
+                    firstUsedAt: new Date().toISOString(),
+                    testCount: 0
+                };
+                cards.push(card);
+            } else {
+                if (card.deviceId && card.deviceId !== deviceId) {
+                    alert('该卡号已在其他设备使用');
+                    return;
+                }
+                
+                if (!card.deviceId) {
+                    card.deviceId = deviceId;
+                    card.firstUsedAt = new Date().toISOString();
+                }
+            }
+            
+            card.testCount = (card.testCount || 0) + 1;
+            card.lastUsedAt = new Date().toISOString();
+            
+            localStorage.setItem('familyCards', JSON.stringify(cards));
+            
+            currentCard = card;
+            showTestPage();
+        }
+        
+        function showTestPage() {
+            document.getElementById('cardVerifyPage').classList.add('hidden');
+            document.getElementById('testPage').classList.remove('hidden');
+            document.getElementById('fullReportPage').classList.add('hidden');
+            document.getElementById('freeResultPage').classList.add('hidden');
+            document.getElementById('adminPanel').classList.add('hidden');
+
+            currentPage = 'test';
+            currentQuestion = 0;
+            answers = new Array(40).fill(0);
+            renderQuestion();
+        }
+        
+        function renderQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('questionText').textContent = `Q${currentQuestion + 1}: ${question.text}`;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                if (answers[currentQuestion] === index + 1) {
+                    optionDiv.classList.add('selected');
+                }
+                optionDiv.textContent = option;
+                optionDiv.onclick = () => selectOption(index + 1);
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            const progress = ((currentQuestion + 1) / 40) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `第${currentQuestion + 1}题 / 共40题`;
+            
+            document.getElementById('prevBtn').style.display = currentQuestion > 0 ? 'block' : 'none';
+            document.getElementById('nextBtn').textContent = currentQuestion === 39 ? '完成测评 ✓' : '下一题 →';
+        }
+        
+        function selectOption(value) {
+            answers[currentQuestion] = value;
+            setTimeout(() => {
+                if (currentQuestion < 39) {
+                    nextQuestion();
+                } else {
+                    renderQuestion();
+                }
+            }, 200);
+        }
+        
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+            }
+        }
+        
+        function nextQuestion() {
+            if (answers[currentQuestion] === 0) {
+                alert('请选择一个选项');
+                return;
+            }
+            
+            if (currentQuestion < 39) {
+                currentQuestion++;
+                renderQuestion();
+            } else {
+                calculateResult();
+            }
+        }
+        
+        function calculateResult() {
+            const dimensionScores = [0, 0, 0, 0];
+            const dimensionCounts = [10, 10, 10, 10];
+            
+            questions.forEach((q, i) => {
+                let score = answers[i];
+                if (q.reverse) {
+                    score = 6 - score;
+                }
+                dimensionScores[q.dimension] += score;
+            });
+            
+            const finalScores = dimensionScores.map((score, i) => 
+                Math.round((score / (dimensionCounts[i] * 5)) * 100)
+            );
+            
+            const totalScore = Math.round(finalScores.reduce((a, b) => a + b, 0) / 4);
+            
+            let level, icon, desc;
+            if (totalScore >= 80) {
+                level = '健康家庭';
+                icon = '🌈';
+                desc = '你拥有一个温暖健康的原生家庭，父母给予了足够的爱和支持。这是很幸运的，请珍惜这份幸福。';
+            } else if (totalScore >= 60) {
+                level = '轻度创伤';
+                icon = '🌤️';
+                desc = '你的原生家庭存在一些问题，但整体还算健康。这些经历对你有一定影响，但不至于造成严重创伤。';
+            } else if (totalScore >= 40) {
+                level = '中度创伤';
+                icon = '⛅';
+                desc = '你的原生家庭存在明显的问题，这些经历对你的成长产生了较大影响。建议寻求专业帮助进行疗愈。';
+            } else if (totalScore >= 20) {
+                level = '重度创伤';
+                icon = '🌧️';
+                desc = '你的童年经历了较为严重的创伤，原生家庭给你带来了深刻的伤痕。强烈建议寻求心理咨询师的帮助。';
+            } else {
+                level = '严重创伤';
+                icon = '⛈️';
+                desc = '你的童年经历了严重的创伤事件，这对你的心理健康产生了重大影响。请务必寻求专业的心理治疗。';
+            }
+
+            sessionStorage.setItem('testResult', JSON.stringify({
+                scores: finalScores,
+                totalScore: totalScore,
+                level: level,
+                icon: icon,
+                desc: desc
+            }));
+            
+            showFreeResult();
+        }
+        
+        function showFreeResult() {
+            const result = JSON.parse(sessionStorage.getItem('testResult'));
+            
+            document.getElementById('cardVerifyPage').classList.add('hidden');
+            document.getElementById('testPage').classList.add('hidden');
+            document.getElementById('fullReportPage').classList.add('hidden');
+            document.getElementById('freeResultPage').classList.remove('hidden');
+            document.getElementById('adminPanel').classList.add('hidden');
+
+            document.getElementById('archetypeIcon').textContent = result.icon;
+            document.getElementById('archetypeName').textContent = result.level;
+            document.getElementById('typeName').textContent = result.level;
+            document.getElementById('typeDesc').textContent = result.desc;
+            
+            drawRadarChart('radarChart', result.scores);
+            
+            const scoresList = document.getElementById('scoresList');
+            const dimensionNames = ['情感支持度', '边界健康度', '沟通模式', '安全感指数'];
+            const dimensionIcons = ['💝', '🚪', '💬', '🛡️'];
+            
+            scoresList.innerHTML = '';
+            result.scores.forEach((score, i) => {
+                const scoreItem = document.createElement('div');
+                scoreItem.className = 'score-item';
+                scoreItem.innerHTML = `
+                    <div class="score-item-name">${dimensionIcons[i]} ${dimensionNames[i]}</div>
+                    <div class="score-item-value">${score}%</div>
+                    <div class="score-item-desc">${score > 70 ? '健康' : score > 50 ? '一般' : score > 30 ? '欠佳' : '较差'}</div>
+                `;
+                scoresList.appendChild(scoreItem);
+            });
+            
+            window.scrollTo(0, 0);
+        }
+        
+        function drawRadarChart(canvasId, scores) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            const isMobile = window.innerWidth <= 768;
+            
+            const existingChart = Chart.getChart(canvasId);
+            if (existingChart) {
+                existingChart.destroy();
+            }
+            
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['情感支持度', '边界健康度', '沟通模式', '安全感指数'],
+                    datasets: [{
+                        label: '你的得分',
+                        data: scores,
+                        backgroundColor: 'rgba(255, 179, 71, 0.3)',
+                        borderColor: '#FFB347',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#FF8C42',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    aspectRatio: isMobile ? 1 : 1.2,
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 100,
+                            ticks: {
+                                stepSize: 20,
+                                font: {size: isMobile ? 9 : 11}
+                            },
+                            pointLabels: {
+                                font: {size: isMobile ? 10 : 12, weight: 'bold'},
+                                color: '#FF8C42'
+                            },
+                            grid: {color: '#FFE4C4'},
+                            angleLines: {color: '#FFE4C4'}
+                        }
+                    },
+                    plugins: {
+                        legend: {display: false}
+                    }
+                }
+            });
+        }
+        
+        function handlePaymentProof(event) {
+            const file = event.target.files[0];
+            
+            if (file) {
+                setTimeout(() => {
+                    alert('✅ 付款截图已上传！\n\n完整报告已解锁，请查看下方内容。');
+                    showFullReport();
+                }, 500);
+                
+                saveSimpleOrder();
+            }
+        }
+        
+        function saveSimpleOrder() {
+            const orders = JSON.parse(localStorage.getItem('familyOrders') || '[]');
+            orders.unshift({
+                id: Date.now(),
+                amount: 4.9,
+                product: '原生家庭完整报告',
+                time: new Date().toISOString(),
+                status: '已完成'
+            });
+            localStorage.setItem('familyOrders', JSON.stringify(orders));
+        }
+        
+        function showFullReport() {
+            const result = JSON.parse(sessionStorage.getItem('testResult'));
+            
+            document.getElementById('cardVerifyPage').classList.add('hidden');
+            document.getElementById('testPage').classList.add('hidden');
+            document.getElementById('freeResultPage').classList.add('hidden');
+            document.getElementById('fullReportPage').classList.remove('hidden');
+            document.getElementById('adminPanel').classList.add('hidden');
+            
+            document.getElementById('fullFamilyScore').textContent = result.totalScore + '%';
+            document.getElementById('fullFamilyLevel').textContent = result.level + ' - 健康度' + result.totalScore + '%';
+            
+            drawRadarChart('fullRadarChart', result.scores);
+            
+            const dimensionNames = ['情感支持度', '边界健康度', '沟通模式', '安全感指数'];
+            const lowest = result.scores.indexOf(Math.min(...result.scores));
+            
+            const analysisTexts = {
+                0: '你在情感支持度方面得分较低，说明你可能在童年缺乏足够的情感关怀。父母可能不太擅长表达爱，或者他们太忙碌而忽略了你的情感需求。',
+                1: '你在边界健康度方面得分较低，说明父母可能过度控制或侵犯你的隐私。你可能感觉没有自己的空间，或者被当作父母的延伸而非独立个体。',
+                2: '你在沟通模式方面得分较低，说明家庭内部沟通存在问题。可能有冷暴力、语言暴力，或者根本无法好好说话。',
+                3: '你在安全感方面得分较低，说明童年环境不够稳定安全。可能经历过家庭暴力、父母争吵、经济困难等让你感到不安的事件。'
+            };
+            
+            const fullAnalysis = document.getElementById('fullAnalysis');
+            if (fullAnalysis) {
+                const personalizedText = analysisTexts[lowest] || '你的原生家庭在各方面都有一定问题。';
+                const firstP = fullAnalysis.querySelector('p');
+                if (firstP) {
+                    firstP.textContent = personalizedText + ' 但请记住，童年的经历不能定义你，你可以通过疗愈成为更好的自己。';
+                }
+            }
+            
+            window.scrollTo(0, 0);
+        }
+        
+        function copyToClipboard(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const orig = btn.textContent;
+                btn.textContent = '已复制!';
+                btn.style.background = '#07C160';
+                setTimeout(() => {
+                    btn.textContent = orig;
+                    btn.style.background = '#FFB347';
+                }, 2000);
+            });
+        }
+        
+        function showAdminPanel() {
+            document.getElementById('cardVerifyPage').classList.add('hidden');
+            document.getElementById('adminPanel').classList.remove('hidden');
+        }
+        
+        function verifyAdmin() {
+            const pwd = document.getElementById('adminPassword').value;
+            if (pwd === ADMIN_PASSWORD) {
+                document.getElementById('adminContent').classList.remove('hidden');
+                loadAdminStats();
+            } else {
+                alert('密码错误');
+            }
+        }
+        
+        function loadAdminStats() {
+            const cards = JSON.parse(localStorage.getItem('familyCards') || '[]');
+            const orders = JSON.parse(localStorage.getItem('familyOrders') || '[]');
+            
+            document.getElementById('adminContent').innerHTML = `
+                <div style="background: linear-gradient(135deg, #FFF9F0 0%, #F0FFF0 100%); padding: 20px; border-radius: 15px; margin: 20px 0;">
+                    <h3 style="color: #FF8C42; margin-bottom: 15px;">📊 数据统计</h3>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+                        <div style="background: white; padding: 15px; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2em; color: #FF8C42; font-weight: bold;">${cards.length}</div>
+                            <div style="color: #999; font-size: 0.9em; margin-top: 5px;">卡密总数</div>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2em; color: #FF8C42; font-weight: bold;">${orders.length}</div>
+                            <div style="color: #999; font-size: 0.9em; margin-top: 5px;">付费订单</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 style="color: #FF8C42; margin: 25px 0 12px 0;">最近订单记录</h3>
+                <div style="background: #FFF9F0; padding: 15px; border-radius: 12px; max-height: 300px; overflow-y: auto;">
+                    ${orders.length === 0 ? 
+                        '<p style="text-align: center; color: #999; padding: 20px;">暂无订单</p>' :
+                        orders.slice(0, 20).map(o => `
+                            <div style="background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+                                <div style="font-weight: bold; color: #333; margin-bottom: 5px;">¥${o.amount} - ${o.product}</div>
+                                <div style="font-size: 0.85em; color: #999;">${new Date(o.time).toLocaleString()}</div>
+                            </div>
+                        `).join('')
+                    }
+                </div>
+                
+                <h3 style="color: #FF8C42; margin: 25px 0 12px 0;">生成卡密</h3>
+                <div class="input-group">
+                    <input type="number" id="cardCount" placeholder="输入生成数量（1-100）" min="1" max="100" value="10">
+                </div>
+                <button class="btn btn-primary" onclick="generateCards()">生成卡密</button>
+                
+                <button class="btn btn-secondary" onclick="location.reload()" style="margin-top: 20px;">返回主页</button>
+            `;
+        }
+        
+        function generateCards() {
+            const count = parseInt(document.getElementById('cardCount').value);
+            
+            if (!count || count < 1 || count > 100) {
+                alert('请输入1-100之间的数字');
+                return;
+            }
+            
+            const cards = JSON.parse(localStorage.getItem('familyCards') || '[]');
+            const newCards = [];
+            
+            for (let i = 0; i < count; i++) {
+                newCards.push({
+                    code: generateCardCode(),
+                    createdAt: new Date().toISOString()
+                });
+            }
+            
+            cards.push(...newCards);
+            localStorage.setItem('familyCards', JSON.stringify(cards));
+            
+            const text = newCards.map(c => c.code).join('\n');
+            const blob = new Blob([text], {type: 'text/plain'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `原生家庭测试卡密_${new Date().getTime()}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            alert(`成功生成${count}个卡密！`);
+            loadAdminStats();
+        }
+        
+        function generateCardCode() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let code = 'FAMILY-';
+            
+            for (let i = 0; i < 4; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            code += '-';
+            
+            for (let i = 0; i < 4; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            return code;
+        }
+        
+        window.onload = function() {
+            const cards = JSON.parse(localStorage.getItem('familyCards') || '[]');
+            if (cards.length === 0) {
+                const testCards = [];
+                for (let i = 0; i < 10; i++) {
+                    testCards.push({
+                        code: generateCardCode(),
+                        createdAt: new Date().toISOString()
+                    });
+                }
+                localStorage.setItem('familyCards', JSON.stringify(testCards));
+                console.log('已生成10个测试卡密，请在管理员后台查看（密码：lss900201）');
+            }
+        };
+    </script>
+</body>
+</html>
