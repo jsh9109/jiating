@@ -1433,11 +1433,15 @@ var _hmt = _hmt || [];
 function verifyAdmin() {
     const pwd = document.getElementById('adminPassword').value;
     if (pwd === ADMIN_PASSWORD) {
+        document.getElementById('adminPanel').classList.remove('hidden'); 
         document.getElementById('adminContent').classList.remove('hidden');
-        // 【关键修改】在密码正确后，必须调用 loadAdminStats() 来填充内容
+        
+        // ✨ 关键修正：登录成功后，立即加载并显示统计数据
         loadAdminStats(); 
     } else {
         alert('密码错误');
+        // 确保输入框被清空
+        document.getElementById('adminPassword').value = ''; 
     }
 }
         
