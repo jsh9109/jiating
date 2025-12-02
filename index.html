@@ -971,15 +971,21 @@ var _hmt = _hmt || [];
         </div>
         
         <!-- 管理员后台 -->
-        <div id="adminPanel" class="card hidden">
-            <h2 style="color: #FF8C42; margin-bottom: 25px; text-align: center;">🔐 管理员后台</h2>
-            <div class="input-group">
-                <input type="password" id="adminPassword" placeholder="请输入管理员密码">
-            </div>
-            <button class="btn btn-primary" onclick="verifyAdmin()">登录</button>
-            
-            <div id="adminContent" class="hidden"></div>
+<div id="adminPanel" class="card hidden">
+    <h2 style="color: #FF8C42; margin-bottom: 25px; text-align: center;">🔐 管理员后台</h2>
+    
+    <!-- ✅ 新增这个div包装登录区域 -->
+    <div id="adminLogin">
+        <div class="input-group">
+            <input type="password" id="adminPassword" placeholder="请输入管理员密码">
         </div>
+        <button class="btn btn-primary" onclick="verifyAdmin()">登录</button>
+        <button class="btn btn-secondary" onclick="backToMain()">返回主页</button>
+    </div>
+    
+    <!-- 原有的内容区域 -->
+    <div id="adminContent" class="hidden"></div>
+</div>
     </div>
     <script>
         // ==================== [配置区] ====================
@@ -1425,18 +1431,44 @@ var _hmt = _hmt || [];
             });
         }
         
-        function showAdminPanel() {
-            document.getElementById('cardVerifyPage').classList.add('hidden');
-            document.getElementById('adminPanel').classList.remove('hidden');
-        }
+function showAdminPanel() {
+    document.getElementById('cardVerifyPage').classList.add('hidden');
+    document.getElementById('adminPanel').classList.remove('hidden');
+    
+    // ✅ 新增:确保登录区显示,内容区隐藏
+    const loginDiv = document.getElementById('adminLogin');
+    if (loginDiv) {
+        loginDiv.classList.remove('hidden');
+    }
+    
+    document.getElementById('adminContent').classList.add('hidden');
+    
+    // ✅ 新增:清空密码框
+    document.getElementById('adminPassword').value = '';
+}
         
 function verifyAdmin() {
     const pwd = document.getElementById('adminPassword').value;
     if (pwd === ADMIN_PASSWORD) {
+        // ✅ 新增:清空密码框
+        document.getElementById('adminPassword').value = '';
+        
+        // ✅ 新增:隐藏登录区域(如果存在adminLogin元素)
+        const loginDiv = document.getElementById('adminLogin');
+        if (loginDiv) {
+            loginDiv.classList.add('hidden');
+        }
+        
+        // 显示管理员内容
         document.getElementById('adminContent').classList.remove('hidden');
+        
+        // 加载统计数据
         loadAdminStats();
+        
+        alert('登录成功!');
     } else {
         alert('密码错误');
+        document.getElementById('adminPassword').value = '';
     }
 }
         
