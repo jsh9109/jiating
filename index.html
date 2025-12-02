@@ -1430,15 +1430,16 @@ var _hmt = _hmt || [];
             document.getElementById('adminPanel').classList.remove('hidden');
         }
         
-        function verifyAdmin() {
-            const pwd = document.getElementById('adminPassword').value;
-            if (pwd === ADMIN_PASSWORD) {
-                document.getElementById('adminContent').classList.remove('hidden');
-                loadAdminStats();
-            } else {
-                alert('密码错误');
-            }
-        }
+function verifyAdmin() {
+    const pwd = document.getElementById('adminPassword').value;
+    if (pwd === ADMIN_PASSWORD) {
+        document.getElementById('adminContent').classList.remove('hidden');
+        // 【关键修改】在密码正确后，必须调用 loadAdminStats() 来填充内容
+        loadAdminStats(); 
+    } else {
+        alert('密码错误');
+    }
+}
         
         function loadAdminStats() {
             const cards = JSON.parse(localStorage.getItem('familyCards') || '[]');
