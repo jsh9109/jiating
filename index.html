@@ -1409,8 +1409,8 @@ var _hmt = _hmt || [];
             window.scrollTo(0, 0);
         }
         function backToMain() {
-    document.getElementById('adminPanel').classList.add('hidden');
-    document.getElementById('cardVerifyPage').classList.remove('hidden');
+    document.getElementById('adminPanel').classList.add('hidden'); 
+    document.getElementById('cardVerifyPage').classList.remove('hidden'); 
 }
 
         function copyToClipboard(text, btn) {
@@ -1445,47 +1445,47 @@ function verifyAdmin() {
     }
 }
         
-        function loadAdminStats() {
-            const cards = JSON.parse(localStorage.getItem('familyCards') || '[]');
-            const orders = JSON.parse(localStorage.getItem('familyOrders') || '[]');
+function loadAdminStats() {
+    const cards = JSON.parse(localStorage.getItem('familyCards') || '[]');
+    const orders = JSON.parse(localStorage.getItem('familyOrders') || '[]');
             
-            document.getElementById('adminContent').innerHTML = `
-                <div style="background: linear-gradient(135deg, #FFF9F0 0%, #F0FFF0 100%); padding: 20px; border-radius: 15px; margin: 20px 0;">
-                    <h3 style="color: #FF8C42; margin-bottom: 15px;">📊 数据统计</h3>
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-                        <div style="background: white; padding: 15px; border-radius: 10px; text-align: center;">
-                            <div style="font-size: 2em; color: #FF8C42; font-weight: bold;">${cards.length}</div>
-                            <div style="color: #999; font-size: 0.9em; margin-top: 5px;">卡密总数</div>
-                        </div>
-                        <div style="background: white; padding: 15px; border-radius: 10px; text-align: center;">
-                            <div style="font-size: 2em; color: #FF8C42; font-weight: bold;">${orders.length}</div>
-                            <div style="color: #999; font-size: 0.9em; margin-top: 5px;">付费订单</div>
-                        </div>
+    document.getElementById('adminContent').innerHTML = `
+        <div style="background: linear-gradient(135deg, #FFF9F0 0%, #F0FFF0 100%); padding: 20px; border-radius: 15px; margin: 20px 0;">
+            <h3 style="color: #FF8C42; margin-bottom: 15px;">📊 数据统计</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+                <div style="background: white; padding: 15px; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 2em; color: #FF8C42; font-weight: bold;">${cards.length}</div>
+                    <div style="color: #999; font-size: 0.9em; margin-top: 5px;">卡密总数</div>
+                </div>
+                <div style="background: white; padding: 15px; border-radius: 10px; text-align: center;">
+                    <div style="font-size: 2em; color: #FF8C42; font-weight: bold;">${orders.length}</div>
+                    <div style="color: #999; font-size: 0.9em; margin-top: 5px;">付费订单</div>
+                </div>
+            </div>
+        </div>
+        
+        <h3 style="color: #FF8C42; margin: 25px 0 12px 0;">最近订单记录</h3>
+        <div style="background: #FFF9F0; padding: 15px; border-radius: 12px; max-height: 300px; overflow-y: auto;">
+            ${orders.length === 0 ? 
+                '<p style="text-align: center; color: #999; padding: 20px;">暂无订单</p>' :
+                orders.slice(0, 20).map(o => `
+                    <div style="background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+                        <div style="font-weight: bold; color: #333; margin-bottom: 5px;">¥${o.amount} - ${o.product}</div>
+                        <div style="font-size: 0.85em; color: #999;">${new Date(o.time).toLocaleString()}</div>
                     </div>
-                </div>
-                
-                <h3 style="color: #FF8C42; margin: 25px 0 12px 0;">最近订单记录</h3>
-                <div style="background: #FFF9F0; padding: 15px; border-radius: 12px; max-height: 300px; overflow-y: auto;">
-                    ${orders.length === 0 ? 
-                        '<p style="text-align: center; color: #999; padding: 20px;">暂无订单</p>' :
-                        orders.slice(0, 20).map(o => `
-                            <div style="background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
-                                <div style="font-weight: bold; color: #333; margin-bottom: 5px;">¥${o.amount} - ${o.product}</div>
-                                <div style="font-size: 0.85em; color: #999;">${new Date(o.time).toLocaleString()}</div>
-                            </div>
-                        `).join('')
-                    }
-                </div>
-                
-                <h3 style="color: #FF8C42; margin: 25px 0 12px 0;">生成卡密</h3>
-                <div class="input-group">
-                    <input type="number" id="cardCount" placeholder="输入生成数量（1-100）" min="1" max="100" value="10">
-                </div>
-                <button class="btn btn-primary" onclick="generateCards()">生成卡密</button>
-                
-                <button class="btn btn-secondary" onclick="location.reload()" style="margin-top: 20px;">返回主页</button>
-            `;
-        }
+                `).join('')
+            }
+        </div>
+        
+        <h3 style="color: #FF8C42; margin: 25px 0 12px 0;">生成卡密</h3>
+        <div class="input-group">
+            <input type="number" id="cardCount" placeholder="输入生成数量（1-100）" min="1" max="100" value="10">
+        </div>
+        <button class="btn btn-primary" onclick="generateCards()">生成卡密</button>
+        
+        <button class="btn btn-secondary" onclick="backToMain()" style="margin-top: 20px;">返回主页</button>
+    `;
+}
         
         function generateCards() {
             const count = parseInt(document.getElementById('cardCount').value);
