@@ -1433,22 +1433,28 @@ var _hmt = _hmt || [];
 function verifyAdmin() {
     const pwd = document.getElementById('adminPassword').value;
     if (pwd === ADMIN_PASSWORD) {
-        document.getElementById('adminPanel').classList.remove('hidden'); 
+        // ✅ 先清空密码框
+        document.getElementById('adminPassword').value = '';
+        
+        // ✅ 显示管理员内容
         document.getElementById('adminContent').classList.remove('hidden');
         
-        // ✨ 关键修正：登录成功后，立即加载并显示统计数据
-        loadAdminStats(); 
+        // ✅ 加载统计数据
+        loadAdminStats();
+        
+        // ✅ 提示登录成功
+        alert('登录成功！');
     } else {
         alert('密码错误');
-        // 确保输入框被清空
-        document.getElementById('adminPassword').value = ''; 
+        document.getElementById('adminPassword').value = '';
     }
 }
         
 function loadAdminStats() {
     const cards = JSON.parse(localStorage.getItem('familyCards') || '[]');
     const orders = JSON.parse(localStorage.getItem('familyOrders') || '[]');
-            
+    
+    // 直接设置内容,不要再操作 classList
     document.getElementById('adminContent').innerHTML = `
         <div style="background: linear-gradient(135deg, #FFF9F0 0%, #F0FFF0 100%); padding: 20px; border-radius: 15px; margin: 20px 0;">
             <h3 style="color: #FF8C42; margin-bottom: 15px;">📊 数据统计</h3>
