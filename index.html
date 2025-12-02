@@ -1433,20 +1433,10 @@ var _hmt = _hmt || [];
 function verifyAdmin() {
     const pwd = document.getElementById('adminPassword').value;
     if (pwd === ADMIN_PASSWORD) {
-        // ✅ 先清空密码框
-        document.getElementById('adminPassword').value = '';
-        
-        // ✅ 显示管理员内容
         document.getElementById('adminContent').classList.remove('hidden');
-        
-        // ✅ 加载统计数据
         loadAdminStats();
-        
-        // ✅ 提示登录成功
-        alert('登录成功！');
     } else {
         alert('密码错误');
-        document.getElementById('adminPassword').value = '';
     }
 }
         
@@ -1454,42 +1444,76 @@ function loadAdminStats() {
     const cards = JSON.parse(localStorage.getItem('familyCards') || '[]');
     const orders = JSON.parse(localStorage.getItem('familyOrders') || '[]');
     
-    // 直接设置内容,不要再操作 classList
+    const total = cards.length;
+    const used = cards.filter(c => c.deviceId).length;
+    const unused = total - used;
+    
     document.getElementById('adminContent').innerHTML = `
-        <div style="background: linear-gradient(135deg, #FFF9F0 0%, #F0FFF0 100%); padding: 20px; border-radius: 15px; margin: 20px 0;">
-            <h3 style="color: #FF8C42; margin-bottom: 15px;">📊 数据统计</h3>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
-                <div style="background: white; padding: 15px; border-radius: 10px; text-align: center;">
-                    <div style="font-size: 2em; color: #FF8C42; font-weight: bold;">${cards.length}</div>
-                    <div style="color: #999; font-size: 0.9em; margin-top: 5px;">卡密总数</div>
+        <div style="background: linear-gradient(135deg, #FFF9F0 0%, #F0FFF0 100%); padding: 25px; border-radius: 15px; margin: 25px 0;">
+            <h3 style="color: #FF8C42; margin-bottom: 20px; font-size: 1.4em;">📊 数据统计</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                <div style="background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="font-size: 2.5em; color: #FF8C42; font-weight: bold;">${total}</div>
+                    <div style="color: #999; font-size: 0.95em; margin-top: 8px;">卡密总数</div>
                 </div>
-                <div style="background: white; padding: 15px; border-radius: 10px; text-align: center;">
-                    <div style="font-size: 2em; color: #FF8C42; font-weight: bold;">${orders.length}</div>
-                    <div style="color: #999; font-size: 0.9em; margin-top: 5px;">付费订单</div>
+                <div style="background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="font-size: 2.5em; color: #6BBF59; font-weight: bold;">${used}</div>
+                    <div style="color: #999; font-size: 0.95em; margin-top: 8px;">已使用</div>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="font-size: 2.5em; color: #FFB347; font-weight: bold;">${unused}</div>
+                    <div style="color: #999; font-size: 0.95em; margin-top: 8px;">未使用</div>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <div style="font-size: 2.5em; color: #FF6B35; font-weight: bold;">${orders.length}</div>
+                    <div style="color: #999; font-size: 0.95em; margin-top: 8px;">付费订单</div>
                 </div>
             </div>
         </div>
         
-        <h3 style="color: #FF8C42; margin: 25px 0 12px 0;">最近订单记录</h3>
-        <div style="background: #FFF9F0; padding: 15px; border-radius: 12px; max-height: 300px; overflow-y: auto;">
+        <h3 style="color: #FF8C42; margin: 30px 0 15px 0; font-size: 1.3em;">💰 最近订单记录</h3>
+        <div style="background: #FFF9F0; padding: 20px; border-radius: 12px; max-height: 350px; overflow-y: auto;">
             ${orders.length === 0 ? 
-                '<p style="text-align: center; color: #999; padding: 20px;">暂无订单</p>' :
+                '<p style="text-align: center; color: #999; padding: 30px; font-size: 1.05em;">暂无订单记录</p>' :
                 orders.slice(0, 20).map(o => `
-                    <div style="background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
-                        <div style="font-weight: bold; color: #333; margin-bottom: 5px;">¥${o.amount} - ${o.product}</div>
-                        <div style="font-size: 0.85em; color: #999;">${new Date(o.time).toLocaleString()}</div>
+                    <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 12px; border-left: 4px solid #FFB347;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <div style="font-weight: bold; color: #333; font-size: 1.05em;">¥${o.amount} - ${o.product}</div>
+                            <span style="background: #07C160; color: white; padding: 4px 12px; border-radius: 12px; font-size: 0.85em;">已完成</span>
+                        </div>
+                        <div style="font-size: 0.9em; color: #999;">${new Date(o.time).toLocaleString('zh-CN')}</div>
                     </div>
                 `).join('')
             }
         </div>
         
-        <h3 style="color: #FF8C42; margin: 25px 0 12px 0;">生成卡密</h3>
+        <h3 style="color: #FF8C42; margin: 30px 0 15px 0; font-size: 1.3em;">🔑 生成新卡密</h3>
         <div class="input-group">
-            <input type="number" id="cardCount" placeholder="输入生成数量（1-100）" min="1" max="100" value="10">
+            <input type="number" id="cardCount" placeholder="输入生成数量（1-100）" min="1" max="100" value="10" style="background: white;">
         </div>
-        <button class="btn btn-primary" onclick="generateCards()">生成卡密</button>
+        <button class="btn btn-primary" onclick="generateCards()">🎁 生成卡密</button>
         
-        <button class="btn btn-secondary" onclick="backToMain()" style="margin-top: 20px;">返回主页</button>
+        <h3 style="color: #FF8C42; margin: 30px 0 15px 0; font-size: 1.3em;">📋 最近使用记录</h3>
+        <div style="background: #FFF9F0; padding: 20px; border-radius: 12px; max-height: 300px; overflow-y: auto;">
+            ${cards.filter(c => c.lastUsedAt).length === 0 ? 
+                '<p style="text-align: center; color: #999; padding: 30px;">暂无使用记录</p>' :
+                cards.filter(c => c.lastUsedAt)
+                    .sort((a, b) => new Date(b.lastUsedAt) - new Date(a.lastUsedAt))
+                    .slice(0, 10)
+                    .map(card => {
+                        const date = new Date(card.lastUsedAt);
+                        const dateStr = date.toLocaleString('zh-CN');
+                        return `
+                            <div style="background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 3px solid #90EE90;">
+                                <div style="font-family: monospace; color: #333; font-weight: bold; margin-bottom: 5px;">${card.code}</div>
+                                <div style="font-size: 0.85em; color: #999;">使用 ${card.testCount || 1} 次 · ${dateStr}</div>
+                            </div>
+                        `;
+                    }).join('')
+            }
+        </div>
+        
+        <button class="btn btn-secondary" onclick="backToMain()" style="margin-top: 25px;">← 返回主页</button>
     `;
 }
         
