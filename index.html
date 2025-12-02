@@ -4,25 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>原生家庭健康度测试 - 你的童年伤痕有多深？</title>
-    <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?86af0a3f7362f194652e9fc46764d7e1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-    <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?d597963808dc6d91484ad4fd2fafb693";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-    </script>
-    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
@@ -125,21 +106,6 @@ var _hmt = _hmt || [];
             overflow: hidden;
         }
         
-        .dimension-card:before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 179, 71, 0.1) 0%, transparent 70%);
-            transition: transform 0.5s;
-        }
-        
-        .dimension-card:hover:before {
-            transform: translate(25%, 25%);
-        }
-        
         .dimension-card:hover {
             transform: translateY(-5px);
             border-color: #FFB347;
@@ -198,14 +164,9 @@ var _hmt = _hmt || [];
             border-bottom: none;
         }
         
-        .features-list li:hover {
-            padding-left: 10px;
-        }
-        
         .features-list li:before {
             content: "🌱 ";
             margin-right: 8px;
-            margin-left: 0;
         }
         
         .input-group {
@@ -253,18 +214,10 @@ var _hmt = _hmt || [];
             box-shadow: 0 12px 30px rgba(255, 179, 71, 0.5);
         }
         
-        .btn-primary:active {
-            transform: translateY(-1px);
-        }
-        
         .btn-secondary {
             background: white;
             color: #FF8C42;
             border: 2px solid #FFB347;
-        }
-        
-        .btn-secondary:hover {
-            background: #FFF9F0;
         }
         
         .progress-bar {
@@ -348,29 +301,6 @@ var _hmt = _hmt || [];
             overflow: hidden;
         }
         
-        .result-banner:before {
-            content: '🏠';
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 2em;
-            opacity: 0.3;
-        }
-        
-        .result-banner:after {
-            content: '🌈';
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            font-size: 2em;
-            opacity: 0.3;
-        }
-        
-        .result-banner h2 {
-            font-size: 1.8em;
-            margin-bottom: 12px;
-        }
-        
         .rpi-score {
             font-size: 3.5em;
             font-weight: bold;
@@ -409,10 +339,6 @@ var _hmt = _hmt || [];
             border-radius: 12px;
             border-left: 4px solid #FFB347;
             transition: transform 0.3s;
-        }
-        
-        .score-item:hover {
-            transform: translateX(5px);
         }
         
         .score-item-name {
@@ -469,10 +395,6 @@ var _hmt = _hmt || [];
             transition: transform 0.3s;
         }
         
-        .characteristic-item:hover {
-            transform: translateY(-3px);
-        }
-        
         .characteristic-title {
             color: #FF8C42;
             font-weight: bold;
@@ -494,23 +416,6 @@ var _hmt = _hmt || [];
             border: 3px solid #FFB347;
             position: relative;
             overflow: hidden;
-        }
-        
-        .unlock-section:before {
-            content: '💝';
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 3em;
-            opacity: 0.1;
-        }
-        
-        .unlock-section h3 {
-            color: #FF6B35;
-            font-size: 1.7em;
-            text-align: center;
-            margin-bottom: 20px;
-            line-height: 1.5;
         }
         
         .price-tag {
@@ -547,35 +452,16 @@ var _hmt = _hmt || [];
             transition: color 0.3s;
         }
         
-        .admin-link:hover {
-            color: #FFB347;
-        }
-        
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            
-            .card {
-                padding: 25px 18px;
-            }
-            
-            .header h1 {
-                font-size: 1.8em;
-            }
-            
             .dimensions-grid {
                 grid-template-columns: 1fr;
             }
-            
             .characteristics {
                 grid-template-columns: 1fr;
             }
-            
             .scores-list {
                 grid-template-columns: 1fr;
             }
-            
             .chart-container {
                 height: 300px;
             }
@@ -588,7 +474,6 @@ var _hmt = _hmt || [];
 </head>
 <body>
     <div class="container">
-        <!-- 卡密验证页 -->
         <div id="cardVerifyPage" class="card">
             <div class="header">
                 <h1>原生家庭健康度测试</h1>
@@ -639,7 +524,6 @@ var _hmt = _hmt || [];
             <div class="admin-link" onclick="showAdminPanel()">管理员入口 →</div>
         </div>
         
-        <!-- 测试页 -->
         <div id="testPage" class="card hidden">
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
@@ -656,7 +540,6 @@ var _hmt = _hmt || [];
                 <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">下一题 →</button>
             </div>
         </div>
-        <!-- 免费结果页 -->
         <div id="freeResultPage" class="card hidden">
             <div class="result-banner">
                 <h2>你的原生家庭健康度报告</h2>
@@ -757,34 +640,31 @@ var _hmt = _hmt || [];
                     
                     <div style="text-align: center; margin: 20px 0; color: #aaa; font-size: 0.9em;">或</div>
     
-    <!-- 👇 添加这段代码显示收款码 -->
-    <div style="text-align: center; margin: 20px 0;">
-        <p style="color: #666; margin-bottom: 15px; font-size: 1.05em; font-weight: bold;">📱 扫码支付 ¥4.9</p>
-        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-            <div style="text-align: center;">
-                <img src="https://jsh9109.github.io/heian/wechat_qrcode.jpg" 
-                     alt="微信收款码" 
-                     onerror="this.parentElement.style.display='none'" 
-                     style="width: 160px; height: 160px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 3px solid #07C160;">
-                <p style="color: #07C160; font-size: 0.9em; margin-top: 8px; font-weight: bold;">💚 微信支付</p>
-            </div>
-            <div style="text-align: center;">
-                <img src="https://jsh9109.github.io/heian/alipay_qrcode.png" 
-                     alt="支付宝收款码" 
-                     onerror="this.parentElement.style.display='none'" 
-                     style="width: 160px; height: 160px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 3px solid #00A3EE;">
-                <p style="color: #00A3EE; font-size: 0.9em; margin-top: 8px; font-weight: bold;">💙 支付宝支付</p>
-            </div>
-        </div>
-        <p style="color: #999; font-size: 0.85em; margin-top: 15px; line-height: 1.6;">
-            💡 长按图片保存 → 打开微信/支付宝 → 扫一扫 → 相册选择
-        </p>
-    </div>
-    
-    <div style="text-align: center; margin: 20px 0; color: #aaa; font-size: 0.9em;">或</div>
-    
-    <!-- 👇 下面是复制账号的部分 -->
-    <div style="background: #f8f9fa; padding: 12px; ...">
+                    <div style="text-align: center; margin: 20px 0;">
+                        <p style="color: #666; margin-bottom: 15px; font-size: 1.05em; font-weight: bold;">📱 扫码支付 ¥4.9</p>
+                        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <img src="https://jsh9109.github.io/heian/wechat_qrcode.jpg" 
+                                    alt="微信收款码" 
+                                    onerror="this.parentElement.style.display='none'" 
+                                    style="width: 160px; height: 160px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 3px solid #07C160;">
+                                <p style="color: #07C160; font-size: 0.9em; margin-top: 8px; font-weight: bold;">💚 微信支付</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <img src="https://jsh9109.github.io/heian/alipay_qrcode.png" 
+                                    alt="支付宝收款码" 
+                                    onerror="this.parentElement.style.display='none'" 
+                                    style="width: 160px; height: 160px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 3px solid #00A3EE;">
+                                <p style="color: #00A3EE; font-size: 0.9em; margin-top: 8px; font-weight: bold;">💙 支付宝支付</p>
+                            </div>
+                        </div>
+                        <p style="color: #999; font-size: 0.85em; margin-top: 15px; line-height: 1.6;">
+                            💡 长按图片保存 → 打开微信/支付宝 → 扫一扫 → 相册选择
+                        </p>
+                    </div>
+                    
+                    <div style="text-align: center; margin: 20px 0; color: #aaa; font-size: 0.9em;">或</div>
+                    
                     <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
                         <span style="color: #333; font-size: 0.95em;">jsh9109</span>
                         <button onclick="copyToClipboard('jsh9109', this)" style="padding: 8px 14px; background: #FFB347; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制微信</button>
@@ -793,33 +673,29 @@ var _hmt = _hmt || [];
                         <span style="color: #333; font-size: 0.95em;">313360631@qq.com</span>
                         <button onclick="copyToClipboard('313360631@qq.com', this)" style="padding: 8px 14px; background: #FFB347; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制支付宝</button>
                     </div>
-                </div>
-                
-                <h4 style="text-align: center; color: #FF8C00; margin: 30px 0 15px 0; font-size: 1.2em;">
-                    📸 上传付款截图
-                </h4>
-                
-                <label for="paymentProofInput" class="btn btn-primary" style="margin-top: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-                    📸 点击上传截图，立即查看完整报告
-                </label>
-                <input type="file" id="paymentProofInput" accept="image/*" onchange="handlePaymentProof(event)" style="display: none;">
-                
-                <div style="text-align: center; margin-top: 18px; padding: 12px; background: rgba(255,179,71,0.1); border-radius: 10px;">
-                    <p style="color: #FF8C42; font-size: 0.85em; margin: 0;">
-                        🔒 上传截图后立即解锁完整报告，开启疗愈之旅
-                    </p>
+
+                    <h4 style="text-align: center; color: #FF8C00; margin: 30px 0 15px 0; font-size: 1.2em;">
+                        📸 上传付款截图
+                    </h4>
+                    
+                    <label for="paymentProofInput" class="btn btn-primary" style="margin-top: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                        📸 点击上传截图，立即查看完整报告
+                    </label>
+                    <input type="file" id="paymentProofInput" accept="image/*" onchange="handlePaymentProof(event)" style="display: none;">
+                    
+                    <div style="text-align: center; margin-top: 18px; padding: 12px; background: rgba(255,179,71,0.1); border-radius: 10px;">
+                        <p style="color: #FF8C42; font-size: 0.85em; margin: 0;">
+                            🔒 上传截图后立即解锁完整报告，开启疗愈之旅
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <!-- 完整报告页 -->
         <div id="fullReportPage" class="card hidden">
             <div style="background: linear-gradient(135deg, #07C160 0%, #05A650 100%); color: white; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 25px;">
                 <h3 style="margin-bottom: 8px; font-size: 1.4em;">✅ 完整报告已解锁！</h3>
                 <p style="font-size: 1em; opacity: 0.95;">深度分析报告如下，建议保存本页面</p>
-                <p style="font-size: 0.85em; margin-top: 8px; opacity: 0.9;">
-                    💡 可以截图保存或收藏本页面链接
-                </p>
             </div>
             
             <div class="result-banner">
@@ -919,13 +795,6 @@ var _hmt = _hmt || [];
                         <li>《拥抱你的内在小孩》- 一行禅师</li>
                     </ul>
                     
-                    <p style="color: #666; margin: 20px 0 12px 0;"><strong style="color: #FF8C42;">🎧 推荐播客/课程：</strong></p>
-                    <ul style="color: #666; line-height: 2; padding-left: 20px;">
-                        <li>武志红的心理课</li>
-                        <li>简单心理 Uni</li>
-                        <li>得到APP《亲密关系30讲》</li>
-                    </ul>
-                    
                     <p style="color: #666; margin: 20px 0 12px 0;"><strong style="color: #FF8C42;">💬 专业帮助：</strong></p>
                     <ul style="color: #666; line-height: 2; padding-left: 20px;">
                         <li>简单心理（专业心理咨询平台）</li>
@@ -941,16 +810,12 @@ var _hmt = _hmt || [];
                 <div style="background: linear-gradient(135deg, #FFF9F0 0%, #FFE4E1 100%); padding: 25px; border-radius: 12px; margin: 15px 0; border: 2px solid #FFB347;">
                     <p style="color: #666; line-height: 2; font-size: 1.05em; text-align: center;">
                         <strong style="color: #FF6B35; font-size: 1.2em;">你不需要"治愈"，因为你从未破碎</strong><br><br>
-                        
                         原生家庭的经历塑造了你，但不能定义你。<br>
                         你是一个独立的个体，有权利过自己想要的生活。<br><br>
-                        
                         疗愈不是为了成为"更好的人"，<br>
                         而是为了成为"真实的自己"。<br><br>
-                        
                         请记住：<br>
                         <strong style="color: #FF8C42;">你值得被爱，你值得幸福，你值得温柔以待。</strong><br><br>
-                        
                         无论童年经历了什么，<br>
                         现在的你都可以选择给自己一个拥抱，<br>
                         告诉内心的小孩："我会照顾好你。"
@@ -970,28 +835,25 @@ var _hmt = _hmt || [];
             <button class="btn btn-secondary" onclick="location.reload()">重新测评</button>
         </div>
         
-        <!-- 管理员后台 -->
-<div id="adminPanel" class="card hidden">
-    <h2 style="color: #FF8C42; margin-bottom: 25px; text-align: center;">🔐 管理员后台</h2>
-    
-    <!-- ✅ 新增这个div包装登录区域 -->
-    <div id="adminLogin">
-        <div class="input-group">
-            <input type="password" id="adminPassword" placeholder="请输入管理员密码">
+        <div id="adminPanel" class="card hidden">
+            <h2 style="color: #FF8C42; margin-bottom: 25px; text-align: center;">🔐 管理员后台</h2>
+            
+            <div id="adminLogin">
+                <div class="input-group">
+                    <input type="password" id="adminPassword" placeholder="请输入管理员密码">
+                </div>
+                <button class="btn btn-primary" onclick="verifyAdmin()">登录</button>
+                <button class="btn btn-secondary" onclick="backToMain()">返回主页</button>
+            </div>
+            
+            <div id="adminContent" class="hidden"></div>
         </div>
-        <button class="btn btn-primary" onclick="verifyAdmin()">登录</button>
-        <button class="btn btn-secondary" onclick="backToMain()">返回主页</button>
     </div>
     
-    <!-- 原有的内容区域 -->
-    <div id="adminContent" class="hidden"></div>
-</div>
-    </div>
     <script>
         // ==================== [配置区] ====================
-        const CUSTOMER_SERVICE_WECHAT = 'jsh9109';
-        const ADMIN_PASSWORD = 'lss900201';
-        const MASTER_CODE = "FAMILY-MASTER";
+        const ADMIN_PASSWORD = 'lss900201'; // 默认密码
+        const MASTER_CODE = "FAMILY-MASTER"; // 万能卡密
         // ==================================================
         
         /* 40道原生家庭测试题目 */
@@ -1047,7 +909,6 @@ var _hmt = _hmt || [];
         
         const options = ['完全不符合', '不太符合', '不确定', '比较符合', '非常符合'];
         
-        let currentPage = 'verify';
         let currentQuestion = 0;
         let answers = new Array(40).fill(0);
         let currentCard = null;
@@ -1151,7 +1012,6 @@ var _hmt = _hmt || [];
             document.getElementById('freeResultPage').classList.add('hidden');
             document.getElementById('adminPanel').classList.add('hidden');
 
-            currentPage = 'test';
             currentQuestion = 0;
             answers = new Array(40).fill(0);
             renderQuestion();
@@ -1414,10 +1274,11 @@ var _hmt = _hmt || [];
             
             window.scrollTo(0, 0);
         }
+
         function backToMain() {
-    document.getElementById('adminPanel').classList.add('hidden'); 
-    document.getElementById('cardVerifyPage').classList.remove('hidden'); 
-}
+            document.getElementById('adminPanel').classList.add('hidden'); 
+            document.getElementById('cardVerifyPage').classList.remove('hidden'); 
+        }
 
         function copyToClipboard(text, btn) {
             navigator.clipboard.writeText(text).then(() => {
@@ -1431,123 +1292,115 @@ var _hmt = _hmt || [];
             });
         }
         
-function showAdminPanel() {
-    document.getElementById('cardVerifyPage').classList.add('hidden');
-    document.getElementById('adminPanel').classList.remove('hidden');
-    
-    // ✅ 新增:确保登录区显示,内容区隐藏
-    const loginDiv = document.getElementById('adminLogin');
-    if (loginDiv) {
-        loginDiv.classList.remove('hidden');
-    }
-    
-    document.getElementById('adminContent').classList.add('hidden');
-    
-    // ✅ 新增:清空密码框
-    document.getElementById('adminPassword').value = '';
-}
-        
-function verifyAdmin() {
-    const pwd = document.getElementById('adminPassword').value;
-    if (pwd === ADMIN_PASSWORD) {
-        // ✅ 新增:清空密码框
-        document.getElementById('adminPassword').value = '';
-        
-        // ✅ 新增:隐藏登录区域(如果存在adminLogin元素)
-        const loginDiv = document.getElementById('adminLogin');
-        if (loginDiv) {
-            loginDiv.classList.add('hidden');
+        function showAdminPanel() {
+            document.getElementById('cardVerifyPage').classList.add('hidden');
+            document.getElementById('adminPanel').classList.remove('hidden');
+            
+            const loginDiv = document.getElementById('adminLogin');
+            if (loginDiv) {
+                loginDiv.classList.remove('hidden');
+            }
+            
+            document.getElementById('adminContent').classList.add('hidden');
+            document.getElementById('adminPassword').value = '';
         }
         
-        // 显示管理员内容
-        document.getElementById('adminContent').classList.remove('hidden');
+        function verifyAdmin() {
+            const pwd = document.getElementById('adminPassword').value;
+            if (pwd === ADMIN_PASSWORD) {
+                document.getElementById('adminPassword').value = '';
+                
+                const loginDiv = document.getElementById('adminLogin');
+                if (loginDiv) {
+                    loginDiv.classList.add('hidden');
+                }
+                
+                document.getElementById('adminContent').classList.remove('hidden');
+                loadAdminStats();
+                
+                alert('登录成功!');
+            } else {
+                alert('密码错误');
+                document.getElementById('adminPassword').value = '';
+            }
+        }
         
-        // 加载统计数据
-        loadAdminStats();
-        
-        alert('登录成功!');
-    } else {
-        alert('密码错误');
-        document.getElementById('adminPassword').value = '';
-    }
-}
-        
-function loadAdminStats() {
-    const cards = JSON.parse(localStorage.getItem('familyCards') || '[]');
-    const orders = JSON.parse(localStorage.getItem('familyOrders') || '[]');
-    
-    const total = cards.length;
-    const used = cards.filter(c => c.deviceId).length;
-    const unused = total - used;
-    
-    document.getElementById('adminContent').innerHTML = `
-        <div style="background: linear-gradient(135deg, #FFF9F0 0%, #F0FFF0 100%); padding: 25px; border-radius: 15px; margin: 25px 0;">
-            <h3 style="color: #FF8C42; margin-bottom: 20px; font-size: 1.4em;">📊 数据统计</h3>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
-                <div style="background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-                    <div style="font-size: 2.5em; color: #FF8C42; font-weight: bold;">${total}</div>
-                    <div style="color: #999; font-size: 0.95em; margin-top: 8px;">卡密总数</div>
-                </div>
-                <div style="background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-                    <div style="font-size: 2.5em; color: #6BBF59; font-weight: bold;">${used}</div>
-                    <div style="color: #999; font-size: 0.95em; margin-top: 8px;">已使用</div>
-                </div>
-                <div style="background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-                    <div style="font-size: 2.5em; color: #FFB347; font-weight: bold;">${unused}</div>
-                    <div style="color: #999; font-size: 0.95em; margin-top: 8px;">未使用</div>
-                </div>
-                <div style="background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-                    <div style="font-size: 2.5em; color: #FF6B35; font-weight: bold;">${orders.length}</div>
-                    <div style="color: #999; font-size: 0.95em; margin-top: 8px;">付费订单</div>
-                </div>
-            </div>
-        </div>
-        
-        <h3 style="color: #FF8C42; margin: 30px 0 15px 0; font-size: 1.3em;">💰 最近订单记录</h3>
-        <div style="background: #FFF9F0; padding: 20px; border-radius: 12px; max-height: 350px; overflow-y: auto;">
-            ${orders.length === 0 ? 
-                '<p style="text-align: center; color: #999; padding: 30px; font-size: 1.05em;">暂无订单记录</p>' :
-                orders.slice(0, 20).map(o => `
-                    <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 12px; border-left: 4px solid #FFB347;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                            <div style="font-weight: bold; color: #333; font-size: 1.05em;">¥${o.amount} - ${o.product}</div>
-                            <span style="background: #07C160; color: white; padding: 4px 12px; border-radius: 12px; font-size: 0.85em;">已完成</span>
+        function loadAdminStats() {
+            const cards = JSON.parse(localStorage.getItem('familyCards') || '[]');
+            const orders = JSON.parse(localStorage.getItem('familyOrders') || '[]');
+            
+            const total = cards.length;
+            const used = cards.filter(c => c.deviceId).length;
+            const unused = total - used;
+            
+            document.getElementById('adminContent').innerHTML = `
+                <div style="background: linear-gradient(135deg, #FFF9F0 0%, #F0FFF0 100%); padding: 25px; border-radius: 15px; margin: 25px 0;">
+                    <h3 style="color: #FF8C42; margin-bottom: 20px; font-size: 1.4em;">📊 数据统计</h3>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                        <div style="background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                            <div style="font-size: 2.5em; color: #FF8C42; font-weight: bold;">${total}</div>
+                            <div style="color: #999; font-size: 0.95em; margin-top: 8px;">卡密总数</div>
                         </div>
-                        <div style="font-size: 0.9em; color: #999;">${new Date(o.time).toLocaleString('zh-CN')}</div>
+                        <div style="background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                            <div style="font-size: 2.5em; color: #6BBF59; font-weight: bold;">${used}</div>
+                            <div style="color: #999; font-size: 0.95em; margin-top: 8px;">已使用</div>
+                        </div>
+                        <div style="background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                            <div style="font-size: 2.5em; color: #FFB347; font-weight: bold;">${unused}</div>
+                            <div style="color: #999; font-size: 0.95em; margin-top: 8px;">未使用</div>
+                        </div>
+                        <div style="background: white; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                            <div style="font-size: 2.5em; color: #FF6B35; font-weight: bold;">${orders.length}</div>
+                            <div style="color: #999; font-size: 0.95em; margin-top: 8px;">付费订单</div>
+                        </div>
                     </div>
-                `).join('')
-            }
-        </div>
-        
-        <h3 style="color: #FF8C42; margin: 30px 0 15px 0; font-size: 1.3em;">🔑 生成新卡密</h3>
-        <div class="input-group">
-            <input type="number" id="cardCount" placeholder="输入生成数量（1-100）" min="1" max="100" value="10" style="background: white;">
-        </div>
-        <button class="btn btn-primary" onclick="generateCards()">🎁 生成卡密</button>
-        
-        <h3 style="color: #FF8C42; margin: 30px 0 15px 0; font-size: 1.3em;">📋 最近使用记录</h3>
-        <div style="background: #FFF9F0; padding: 20px; border-radius: 12px; max-height: 300px; overflow-y: auto;">
-            ${cards.filter(c => c.lastUsedAt).length === 0 ? 
-                '<p style="text-align: center; color: #999; padding: 30px;">暂无使用记录</p>' :
-                cards.filter(c => c.lastUsedAt)
-                    .sort((a, b) => new Date(b.lastUsedAt) - new Date(a.lastUsedAt))
-                    .slice(0, 10)
-                    .map(card => {
-                        const date = new Date(card.lastUsedAt);
-                        const dateStr = date.toLocaleString('zh-CN');
-                        return `
-                            <div style="background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 3px solid #90EE90;">
-                                <div style="font-family: monospace; color: #333; font-weight: bold; margin-bottom: 5px;">${card.code}</div>
-                                <div style="font-size: 0.85em; color: #999;">使用 ${card.testCount || 1} 次 · ${dateStr}</div>
+                </div>
+                
+                <h3 style="color: #FF8C42; margin: 30px 0 15px 0; font-size: 1.3em;">💰 最近订单记录</h3>
+                <div style="background: #FFF9F0; padding: 20px; border-radius: 12px; max-height: 350px; overflow-y: auto;">
+                    ${orders.length === 0 ? 
+                        '<p style="text-align: center; color: #999; padding: 30px; font-size: 1.05em;">暂无订单记录</p>' :
+                        orders.slice(0, 20).map(o => `
+                            <div style="background: white; padding: 18px; border-radius: 10px; margin-bottom: 12px; border-left: 4px solid #FFB347;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                    <div style="font-weight: bold; color: #333; font-size: 1.05em;">¥${o.amount} - ${o.product}</div>
+                                    <span style="background: #07C160; color: white; padding: 4px 12px; border-radius: 12px; font-size: 0.85em;">已完成</span>
+                                </div>
+                                <div style="font-size: 0.9em; color: #999;">${new Date(o.time).toLocaleString('zh-CN')}</div>
                             </div>
-                        `;
-                    }).join('')
-            }
-        </div>
-        
-        <button class="btn btn-secondary" onclick="backToMain()" style="margin-top: 25px;">← 返回主页</button>
-    `;
-}
+                        `).join('')
+                    }
+                </div>
+                
+                <h3 style="color: #FF8C42; margin: 30px 0 15px 0; font-size: 1.3em;">🔑 生成新卡密</h3>
+                <div class="input-group">
+                    <input type="number" id="cardCount" placeholder="输入生成数量（1-100）" min="1" max="100" value="10" style="background: white;">
+                </div>
+                <button class="btn btn-primary" onclick="generateCards()">🎁 生成卡密</button>
+                
+                <h3 style="color: #FF8C42; margin: 30px 0 15px 0; font-size: 1.3em;">📋 最近使用记录</h3>
+                <div style="background: #FFF9F0; padding: 20px; border-radius: 12px; max-height: 300px; overflow-y: auto;">
+                    ${cards.filter(c => c.lastUsedAt).length === 0 ? 
+                        '<p style="text-align: center; color: #999; padding: 30px;">暂无使用记录</p>' :
+                        cards.filter(c => c.lastUsedAt)
+                            .sort((a, b) => new Date(b.lastUsedAt) - new Date(a.lastUsedAt))
+                            .slice(0, 10)
+                            .map(card => {
+                                const date = new Date(card.lastUsedAt);
+                                const dateStr = date.toLocaleString('zh-CN');
+                                return `
+                                    <div style="background: white; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 3px solid #90EE90;">
+                                        <div style="font-family: monospace; color: #333; font-weight: bold; margin-bottom: 5px;">${card.code}</div>
+                                        <div style="font-size: 0.85em; color: #999;">使用 ${card.testCount || 1} 次 · ${dateStr}</div>
+                                    </div>
+                                `;
+                            }).join('')
+                    }
+                </div>
+                
+                <button class="btn btn-secondary" onclick="backToMain()" style="margin-top: 25px;">← 返回主页</button>
+            `;
+        }
         
         function generateCards() {
             const count = parseInt(document.getElementById('cardCount').value);
