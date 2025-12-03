@@ -317,15 +317,14 @@
             backdrop-filter: blur(10px);
         }
         
-.chart-container {
-    position: relative;
-    height: 400px;
-    min-height: 350px;
-    margin: 30px 0;
-    background: white;
-    border-radius: 15px;
-    padding: 20px;
-}
+        .chart-container {
+            position: relative;
+            height: 380px;
+            margin: 30px 0;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+        }
         
         .scores-list {
             display: grid;
@@ -464,9 +463,7 @@
                 grid-template-columns: 1fr;
             }
             .chart-container {
-    height: 350px;
-    min-height: 320px;
-    padding: 15px;
+                height: 300px;
             }
         }
         
@@ -553,6 +550,7 @@
             
             <div class="chart-container">
                 <canvas id="radarChart"></canvas>
+            </div>
             
             <div class="scores-list" id="scoresList"></div>
             
@@ -708,11 +706,37 @@
             
             <div class="chart-container">
                 <canvas id="fullRadarChart"></canvas>
-</div>
+            </div>
+            
             <div style="background: white; padding: 30px; border-radius: 15px; margin: 25px 0; border-left: 5px solid #FFB347;">
                 <h3 style="color: #FF8C42; font-size: 1.6em; margin-bottom: 15px;">📋 第一部分：你的家庭健康度深度解析</h3>
-             <div id="fullAnalysis">
-
+                <div id="fullAnalysis">
+                    <h4 style="color: #FF6B35; margin: 20px 0 10px 0;">🏠 你的家庭类型：轻度创伤家庭</h4>
+                    <p style="color: #666; line-height: 1.8;">
+                        你的原生家庭健康度为68%，属于轻度创伤类型。虽然存在一些问题，但整体环境还算稳定。
+                        你的父母可能在某些方面做得不够好（比如情感表达、边界尊重等），但他们也有爱你的方式。
+                        这些经历对你产生了一定影响，但不至于造成严重的心理创伤。
+                    </p>
+                    
+                    <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">💡 各维度详细分析</h4>
+                    <div style="background: #FFF9F0; padding: 20px; border-radius: 12px; margin: 15px 0;">
+                        <p style="color: #666; line-height: 1.8; margin-bottom: 12px;"><strong style="color: #FF8C42;">情感支持度：</strong>你的父母可能不太擅长表达爱，但他们的关心以其他方式体现（比如物质供养、督促学习）。你可能渴望更多的情感回应和认可。</p>
+                        <p style="color: #666; line-height: 1.8; margin-bottom: 12px;"><strong style="color: #FF8C42;">边界健康度：</strong>父母可能有时会过度干涉你的生活，或者相反，对你疏于关注。你可能在建立个人边界方面感到困难。</p>
+                        <p style="color: #666; line-height: 1.8; margin-bottom: 12px;"><strong style="color: #FF8C42;">沟通模式：</strong>家里可能存在沟通不畅的问题，或者有时会用不太健康的方式（比如冷战、指责）解决冲突。</p>
+                        <p style="color: #666; line-height: 1.8;"><strong style="color: #FF8C42;">安全感指数：</strong>整体环境相对稳定，但可能有一些让你感到不安的因素（比如父母争吵、经济压力等）。</p>
+                    </div>
+                    
+                    <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">🎯 对当前生活的影响</h4>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 15px 0;">
+                        <div style="background: linear-gradient(135deg, #FFE4E1 0%, #FFF0F5 100%); padding: 20px; border-radius: 12px;">
+                            <h5 style="color: #FF6B35; margin-bottom: 12px;">💔 亲密关系影响</h5>
+                            <ul style="color: #666; line-height: 1.8; padding-left: 20px; font-size: 0.95em;">
+                                <li>可能害怕被抛弃或拒绝</li>
+                                <li>在表达情感时感到困难</li>
+                                <li>对伴侣的某些行为过度敏感</li>
+                                <li>容易陷入不安全的依恋模式</li>
+                            </ul>
+                        </div>
                         <div style="background: linear-gradient(135deg, #E0F8E0 0%, #F0FFF0 100%); padding: 20px; border-radius: 12px;">
                             <h5 style="color: #6BBF59; margin-bottom: 12px;">🌱 自我认知影响</h5>
                             <ul style="color: #666; line-height: 1.8; padding-left: 20px; font-size: 0.95em;">
@@ -724,7 +748,7 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
             
             <div style="background: white; padding: 30px; border-radius: 15px; margin: 25px 0; border-left: 5px solid #FFB347;">
                 <h3 style="color: #FF8C42; font-size: 1.6em; margin-bottom: 15px;">💝 第二部分：疗愈与成长建议</h3>
@@ -806,8 +830,10 @@
                     建议保存本页面，在疗愈路上随时回顾<br>
                     祝你在成长的道路上越来越好 🌱
                 </p>
+            </div>
             
             <button class="btn btn-secondary" onclick="location.reload()">重新测评</button>
+        </div>
         
         <div id="adminPanel" class="card hidden">
             <h2 style="color: #FF8C42; margin-bottom: 25px; text-align: center;">🔐 管理员后台</h2>
@@ -1238,91 +1264,13 @@
             };
             
             const fullAnalysis = document.getElementById('fullAnalysis');
-           if (fullAnalysis) {
-    const lowestDimensionName = dimensionNames[lowest];
-    const lowestDimensionAnalysis = analysisTexts[lowest]; // 获取最低维度的详细分析
-    
-    // 动态生成包含标题和描述的 HTML 字符串
-const impactDescriptions = {
-    0: `
-        <h5 style="color: #FF8C42; margin-bottom: 12px;">💔 情感缺失的影响</h5>
-        <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
-            <li>难以信任他人,总觉得不配被爱</li>
-            <li>在亲密关系中过度付出或过度冷漠</li>
-            <li>情感表达困难,习惯压抑情绪</li>
-            <li>自我价值感低,需要不断寻求外界认可</li>
-        </ul>
-    `,
-    1: `
-        <h5 style="color: #FF8C42; margin-bottom: 12px;">🚪 边界不清的影响</h5>
-        <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
-            <li>不懂拒绝,总是委屈自己成全他人</li>
-            <li>或走向另一个极端:过度防御,难以亲近</li>
-            <li>缺乏自我认同,容易被他人意见左右</li>
-            <li>在关系中找不到舒适的距离感</li>
-        </ul>
-    `,
-    2: `
-        <h5 style="color: #FF8C42; margin-bottom: 12px;">💬 沟通障碍的影响</h5>
-        <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
-            <li>习惯冷暴力或激烈争吵,不会平和表达</li>
-            <li>害怕冲突,宁愿压抑也不敢说出真实想法</li>
-            <li>容易误解他人,也容易被误解</li>
-            <li>在关系中总是"猜来猜去",缺乏安全感</li>
-        </ul>
-    `,
-    3: `
-        <h5 style="color: #FF8C42; margin-bottom: 12px;">🛡️ 缺乏安全感的影响</h5>
-        <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
-            <li>对未来充满焦虑和不确定感</li>
-            <li>在关系中过度依赖或过度独立</li>
-            <li>容易被创伤记忆困扰,出现情绪失控</li>
-            <li>难以建立稳定长久的关系</li>
-        </ul>
-    `
-};
-
-const analysisHTML = `
-    <h4 style="color: #FF6B35; margin: 20px 0 10px 0;">🏠 你的家庭类型:${result.level}</h4>
-    <p style="color: #666; line-height: 1.8;">
-        你的原生家庭健康度为${result.totalScore}%,属于${result.level}类型。
-        ${result.desc}
-        <br><br>
-        你的最大挑战领域是:<strong style="color: #FF6B35;">${dimensionNames[lowest]}</strong>。
-        <br>
-        ${analysisTexts[lowest]}
-    </p>
-    
-    <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">🎯 这如何影响你的现在?</h4>
-    <div style="background: linear-gradient(135deg, #FFF9F0 0%, #FFE4E1 100%); padding: 20px; border-radius: 12px; margin: 15px 0;">
-        ${impactDescriptions[lowest]}
-    </div>
-    
-    <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">🌱 四个维度详细分析</h4>
-    <div style="display: grid; gap: 15px; margin: 15px 0;">
-        ${result.scores.map((score, i) => `
-            <div style="background: ${i === lowest ? 'linear-gradient(135deg, #FFE4E1 0%, #FFF9F0 100%)' : '#F8F9FA'}; padding: 18px; border-radius: 12px; border-left: 4px solid ${i === lowest ? '#FF6B35' : '#FFB347'};">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                    <strong style="color: #FF8C42; font-size: 1.1em;">${['💝', '🚪', '💬', '🛡️'][i]} ${dimensionNames[i]}</strong>
-                    <span style="font-size: 1.4em; font-weight: bold; color: ${score > 70 ? '#6BBF59' : score > 50 ? '#FFB347' : '#FF6B35'};">${score}%</span>
-                </div>
-                <p style="color: #666; font-size: 0.95em; line-height: 1.6; margin: 0;">
-                    ${score > 70 ? '这个维度表现良好,继续保持!' : 
-                      score > 50 ? '这个维度有待提升,但并非严重问题。' :
-                      score > 30 ? '这个维度需要重点关注和疗愈。' :
-                      '这个维度受创较深,建议寻求专业帮助。'}
-                </p>
-            </div>
-        `).join('')}
-    </div>
-    
-    <p style="color: #666; line-height: 1.8; margin-top: 20px; padding: 15px; background: #F0FFF0; border-radius: 10px; border-left: 4px solid #6BBF59;">
-        <strong style="color: #6BBF59;">💡 请记住:</strong> 童年的经历不能定义你,你可以通过疗愈成为更好的自己。下面的疗愈指南会帮助你开启这段旅程。
-    </p>
-`;
-
-fullAnalysis.innerHTML = analysisHTML;
-}
+            if (fullAnalysis) {
+                const personalizedText = analysisTexts[lowest] || '你的原生家庭在各方面都有一定问题。';
+                const firstP = fullAnalysis.querySelector('p');
+                if (firstP) {
+                    firstP.textContent = personalizedText + ' 但请记住，童年的经历不能定义你，你可以通过疗愈成为更好的自己。';
+                }
+            }
             
             window.scrollTo(0, 0);
         }
