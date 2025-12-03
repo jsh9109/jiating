@@ -673,10 +673,12 @@
                         <span style="color: #333; font-size: 0.95em;">jsh9109</span>
                         <button onclick="copyToClipboard('jsh9109', this)" style="padding: 8px 14px; background: #FFB347; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制微信</button>
                     </div>
-                    <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
-                        <span style="color: #333; font-size: 0.95em;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="605351535356505653512011114e030f0d">[email&#160;protected]</a></span>
-                        <button onclick="copyToClipboard('313360631@qq.com', this)" style="padding: 8px 14px; background: #FFB347; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制支付宝</button>
-                    </div>
+<div style="background: #f8f9fa; padding: 12px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
+    <span style="color: #333; font-size: 0.95em;">
+         <span>313360631</span><span>@</span><span>qq.com</span>
+    </span>
+    <button onclick="copyToClipboard('313360631@qq.com', this)" style="padding: 8px 14px; background: #FFB347; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制支付宝</button>
+</div>
 
                     <h4 style="text-align: center; color: #FF8C00; margin: 30px 0 15px 0; font-size: 1.2em;">
                         📸 上传付款截图
