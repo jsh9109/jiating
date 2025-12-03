@@ -674,7 +674,7 @@
                         <button onclick="copyToClipboard('jsh9109', this)" style="padding: 8px 14px; background: #FFB347; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制微信</button>
                     </div>
                     <div style="background: #f8f9fa; padding: 12px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;">
-                        <span style="color: #333; font-size: 0.95em;">313360631@qq.com</span>
+                        <span style="color: #333; font-size: 0.95em;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="605351535356505653512011114e030f0d">[email&#160;protected]</a></span>
                         <button onclick="copyToClipboard('313360631@qq.com', this)" style="padding: 8px 14px; background: #FFB347; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em;">复制支付宝</button>
                     </div>
 
@@ -817,7 +817,7 @@
         </div>
     </div>
     
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // ==================== [配置区] ====================
         const ADMIN_PASSWORD = 'lss900201'; // 默认密码
         const MASTER_CODE = "FAMILY-MASTER"; // 万能卡密
@@ -1231,50 +1231,52 @@
             };
             
             const impactDescriptions = {
-                0: `
-                    <h5 style="color: #FF8C42; margin-bottom: 12px;">💔 情感缺失的影响</h5>
-                    <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
-                        <li>难以信任他人,总觉得不配被爱</li>
-                        <li>在亲密关系中过度付出或过度冷漠</li>
-                        <li>情感表达困难,习惯压抑情绪</li>
-                        <li>自我价值感低,需要不断寻求外界认可</li>
-                    </ul>
-                `,
-                1: `
-                    <h5 style="color: #FF8C42; margin-bottom: 12px;">🚪 边界不清的影响</h5>
-                    <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
-                        <li>不懂拒绝,总是委屈自己成全他人</li>
-                        <li>或走向另一个极端:过度防御,难以亲近</li>
-                        <li>缺乏自我认同,容易被他人意见左右</li>
-                        <li>在关系中找不到舒适的距离感</li>
-                    </ul>
-                `,
-                2: `
-                    <h5 style="color: #FF8C42; margin-bottom: 12px;">💬 沟通障碍的影响</h5>
-                    <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
-                        <li>习惯冷暴力或激烈争吵,不会平和表达</li>
-                        <li>害怕冲突,宁愿压抑也不敢说出真实想法</li>
-                        <li>容易误解他人,也容易被误解</li>
-                        <li>在关系中总是"猜来猜去",缺乏安全感</li>
-                    </ul>
-                `,
-                3: `
-                    <h5 style="color: #FF8C42; margin-bottom: 12px;">🛡️ 缺乏安全感的影响</h5>
-                    <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
-                        <li>对未来充满焦虑和不确定感</li>
-                        <li>在关系中过度依赖或过度独立</li>
-                        <li>容易被创伤记忆困扰,出现情绪失控</li>
-                        <li>难以建立稳定长久的关系</li>
-                    </ul>
-                `
+                0: {
+                    title: '💔 情感缺失的影响',
+                    items: [
+                        '难以信任他人,总觉得不配被爱',
+                        '在亲密关系中过度付出或过度冷漠',
+                        '情感表达困难,习惯压抑情绪',
+                        '自我价值感低,需要不断寻求外界认可'
+                    ]
+                },
+                1: {
+                    title: '🚪 边界不清的影响',
+                    items: [
+                        '不懂拒绝,总是委屈自己成全他人',
+                        '或走向另一个极端:过度防御,难以亲近',
+                        '缺乏自我认同,容易被他人意见左右',
+                        '在关系中找不到舒适的距离感'
+                    ]
+                },
+                2: {
+                    title: '💬 沟通障碍的影响',
+                    items: [
+                        '习惯冷暴力或激烈争吵,不会平和表达',
+                        '害怕冲突,宁愿压抑也不敢说出真实想法',
+                        '容易误解他人,也容易被误解',
+                        '在关系中总是"猜来猜去",缺乏安全感'
+                    ]
+                },
+                3: {
+                    title: '🛡️ 缺乏安全感的影响',
+                    items: [
+                        '对未来充满焦虑和不确定感',
+                        '在关系中过度依赖或过度独立',
+                        '容易被创伤记忆困扰,出现情绪失控',
+                        '难以建立稳定长久的关系'
+                    ]
+                }
             };
             
             const fullAnalysis = document.getElementById('fullAnalysis');
             if (fullAnalysis) {
+                const impactData = impactDescriptions[lowest];
+                
                 const analysisHTML = `
                     <h4 style="color: #FF6B35; margin: 20px 0 10px 0;">🏠 你的家庭类型:${result.level}</h4>
                     <p style="color: #666; line-height: 1.8;">
-                        你的原生家庭健康度为${result.totalScore}%,属于${result.level}类型。
+                        你的原生家庭健康度为 <strong style="color: #FF6B35;">${result.totalScore}%</strong>,属于<strong style="color: #FF6B35;">${result.level}</strong>类型。
                         ${result.desc}
                         <br><br>
                         你的最大挑战领域是:<strong style="color: #FF6B35;">${dimensionNames[lowest]}</strong>。
@@ -1284,7 +1286,10 @@
                     
                     <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">🎯 这如何影响你的现在?</h4>
                     <div style="background: linear-gradient(135deg, #FFF9F0 0%, #FFE4E1 100%); padding: 20px; border-radius: 12px; margin: 15px 0;">
-                        ${impactDescriptions[lowest]}
+                        <h5 style="color: #FF8C42; margin-bottom: 12px;">${impactData.title}</h5>
+                        <ul style="color: #666; line-height: 1.8; padding-left: 20px; margin: 0;">
+                            ${impactData.items.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
                     </div>
                     
                     <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">🌱 四个维度详细分析</h4>
@@ -1296,10 +1301,10 @@
                                     <span style="font-size: 1.4em; font-weight: bold; color: ${score > 70 ? '#6BBF59' : score > 50 ? '#FFB347' : '#FF6B35'};">${score}%</span>
                                 </div>
                                 <p style="color: #666; font-size: 0.95em; line-height: 1.6; margin: 0;">
-                                    ${score > 70 ? '这个维度表现良好,继续保持!' : 
-                                      score > 50 ? '这个维度有待提升,但并非严重问题。' :
-                                      score > 30 ? '这个维度需要重点关注和疗愈。' :
-                                      '这个维度受创较深,建议寻求专业帮助。'}
+                                    ${score > 70 ? '✅ 这个维度表现良好,继续保持!' : 
+                                      score > 50 ? '📊 这个维度有待提升,但并非严重问题。' :
+                                      score > 30 ? '⚠️ 这个维度需要重点关注和疗愈。' :
+                                      '🚨 这个维度受创较深,建议寻求专业帮助。'}
                                 </p>
                             </div>
                         `).join('')}
@@ -1504,10 +1509,3 @@
                         createdAt: new Date().toISOString()
                     });
                 }
-                localStorage.setItem('familyCards', JSON.stringify(testCards));
-                console.log('已生成10个测试卡密,请在管理员后台查看(密码:lss900201)');
-            }
-        };
-    </script>
-</body>
-</html>
