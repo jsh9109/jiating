@@ -319,7 +319,8 @@
         
         .chart-container {
             position: relative;
-            height: 380px;
+            height: 400px;
+            min-height: 350px;
             margin: 30px 0;
             background: white;
             border-radius: 15px;
@@ -463,7 +464,9 @@
                 grid-template-columns: 1fr;
             }
             .chart-container {
-                height: 300px;
+                height: 350px;
+                min-height: 320px;
+                padding: 15px;
             }
         }
         
@@ -540,6 +543,7 @@
                 <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">下一题 →</button>
             </div>
         </div>
+        
         <div id="freeResultPage" class="card hidden">
             <div class="result-banner">
                 <h2>你的原生家庭健康度报告</h2>
@@ -556,7 +560,7 @@
             
             <div class="type-card">
                 <h3 id="typeName">轻度创伤</h3>
-                <p id="typeDesc">你的原生家庭存在一些问题，但整体还算健康。这些经历对你有一定影响，但不至于造成严重创伤。</p>
+                <p id="typeDesc">你的原生家庭存在一些问题,但整体还算健康。这些经历对你有一定影响,但不至于造成严重创伤。</p>
             </div>
             
             <div class="characteristics">
@@ -587,11 +591,11 @@
             </div>
             
             <div style="background: linear-gradient(135deg, #FFF9F0 0%, #F0FFF0 100%); padding: 20px; border-radius: 15px; margin: 20px 0; border-left: 4px solid #FFB347;">
-                <h4 style="color: #FF8C42; margin-bottom: 12px; font-size: 1.1em;">🌱 基础建议（免费版）</h4>
+                <h4 style="color: #FF8C42; margin-bottom: 12px; font-size: 1.1em;">🌱 基础建议(免费版)</h4>
                 <ul style="list-style: none; padding-left: 0; line-height: 1.8; color: #666;">
-                    <li style="padding: 6px 0;">🏠 认识到：原生家庭不是你的错</li>
-                    <li style="padding: 6px 0;">🏠 接纳过去：童年无法改变，但可以疗愈</li>
-                    <li style="padding: 6px 0;">🏠 深度分析：付费版有完整治愈方案</li>
+                    <li style="padding: 6px 0;">🏠 认识到:原生家庭不是你的错</li>
+                    <li style="padding: 6px 0;">🏠 接纳过去:童年无法改变,但可以疗愈</li>
+                    <li style="padding: 6px 0;">🏠 深度分析:付费版有完整治愈方案</li>
                 </ul>
             </div>
             
@@ -603,11 +607,11 @@
                 
                 <div style="background: white; padding: 20px; border-radius: 15px; margin: 20px 0;">
                     <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #FFE4C4;">
-                        <span style="color: #999;">基础诊断（分数）</span>
+                        <span style="color: #999;">基础诊断(分数)</span>
                         <span style="color: #FF6B35; font-weight: bold;">→ 深度创伤分析</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #FFE4C4;">
-                        <span style="color: #999;">简单建议（3条）</span>
+                        <span style="color: #999;">简单建议(3条)</span>
                         <span style="color: #FF6B35; font-weight: bold;">→ 个性化治愈方案</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #FFE4C4;">
@@ -634,7 +638,7 @@
                     <a href="https://qr.alipay.com/tsx15981nt9c4aydmvo2h3d" target="_blank" style="display: flex; align-items: center; justify-content: center; padding: 14px; background: #00A3EE; color: white; text-decoration: none; border-radius: 12px; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(0,163,238,0.3);">
                         <span style="margin-right: 6px;">⚡</span> 支付宝快捷支付
                     </a>
-                    <button onclick="alert('请保存下方微信收款码，打开微信扫码支付')" style="width: 100%; display: flex; align-items: center; justify-content: center; padding: 14px; background: #07C160; color: white; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 12px rgba(7,193,96,0.3); font-size: 1em;">
+                    <button onclick="alert('请保存下方微信收款码,打开微信扫码支付')" style="width: 100%; display: flex; align-items: center; justify-content: center; padding: 14px; background: #07C160; color: white; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 12px rgba(7,193,96,0.3); font-size: 1em;">
                         <span style="margin-right: 6px;">⚡</span> 微信快捷支付
                     </button>
                     
@@ -679,13 +683,13 @@
                     </h4>
                     
                     <label for="paymentProofInput" class="btn btn-primary" style="margin-top: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-                        📸 点击上传截图，立即查看完整报告
+                        📸 点击上传截图,立即查看完整报告
                     </label>
                     <input type="file" id="paymentProofInput" accept="image/*" onchange="handlePaymentProof(event)" style="display: none;">
                     
                     <div style="text-align: center; margin-top: 18px; padding: 12px; background: rgba(255,179,71,0.1); border-radius: 10px;">
                         <p style="color: #FF8C42; font-size: 0.85em; margin: 0;">
-                            🔒 上传截图后立即解锁完整报告，开启疗愈之旅
+                            🔒 上传截图后立即解锁完整报告,开启疗愈之旅
                         </p>
                     </div>
                 </div>
@@ -694,8 +698,8 @@
         
         <div id="fullReportPage" class="card hidden">
             <div style="background: linear-gradient(135deg, #07C160 0%, #05A650 100%); color: white; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 25px;">
-                <h3 style="margin-bottom: 8px; font-size: 1.4em;">✅ 完整报告已解锁！</h3>
-                <p style="font-size: 1em; opacity: 0.95;">深度分析报告如下，建议保存本页面</p>
+                <h3 style="margin-bottom: 8px; font-size: 1.4em;">✅ 完整报告已解锁!</h3>
+                <p style="font-size: 1em; opacity: 0.95;">深度分析报告如下,建议保存本页面</p>
             </div>
             
             <div class="result-banner">
@@ -709,116 +713,79 @@
             </div>
             
             <div style="background: white; padding: 30px; border-radius: 15px; margin: 25px 0; border-left: 5px solid #FFB347;">
-                <h3 style="color: #FF8C42; font-size: 1.6em; margin-bottom: 15px;">📋 第一部分：你的家庭健康度深度解析</h3>
-                <div id="fullAnalysis">
-                    <h4 style="color: #FF6B35; margin: 20px 0 10px 0;">🏠 你的家庭类型：轻度创伤家庭</h4>
-                    <p style="color: #666; line-height: 1.8;">
-                        你的原生家庭健康度为68%，属于轻度创伤类型。虽然存在一些问题，但整体环境还算稳定。
-                        你的父母可能在某些方面做得不够好（比如情感表达、边界尊重等），但他们也有爱你的方式。
-                        这些经历对你产生了一定影响，但不至于造成严重的心理创伤。
-                    </p>
-                    
-                    <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">💡 各维度详细分析</h4>
-                    <div style="background: #FFF9F0; padding: 20px; border-radius: 12px; margin: 15px 0;">
-                        <p style="color: #666; line-height: 1.8; margin-bottom: 12px;"><strong style="color: #FF8C42;">情感支持度：</strong>你的父母可能不太擅长表达爱，但他们的关心以其他方式体现（比如物质供养、督促学习）。你可能渴望更多的情感回应和认可。</p>
-                        <p style="color: #666; line-height: 1.8; margin-bottom: 12px;"><strong style="color: #FF8C42;">边界健康度：</strong>父母可能有时会过度干涉你的生活，或者相反，对你疏于关注。你可能在建立个人边界方面感到困难。</p>
-                        <p style="color: #666; line-height: 1.8; margin-bottom: 12px;"><strong style="color: #FF8C42;">沟通模式：</strong>家里可能存在沟通不畅的问题，或者有时会用不太健康的方式（比如冷战、指责）解决冲突。</p>
-                        <p style="color: #666; line-height: 1.8;"><strong style="color: #FF8C42;">安全感指数：</strong>整体环境相对稳定，但可能有一些让你感到不安的因素（比如父母争吵、经济压力等）。</p>
-                    </div>
-                    
-                    <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">🎯 对当前生活的影响</h4>
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 15px 0;">
-                        <div style="background: linear-gradient(135deg, #FFE4E1 0%, #FFF0F5 100%); padding: 20px; border-radius: 12px;">
-                            <h5 style="color: #FF6B35; margin-bottom: 12px;">💔 亲密关系影响</h5>
-                            <ul style="color: #666; line-height: 1.8; padding-left: 20px; font-size: 0.95em;">
-                                <li>可能害怕被抛弃或拒绝</li>
-                                <li>在表达情感时感到困难</li>
-                                <li>对伴侣的某些行为过度敏感</li>
-                                <li>容易陷入不安全的依恋模式</li>
-                            </ul>
-                        </div>
-                        <div style="background: linear-gradient(135deg, #E0F8E0 0%, #F0FFF0 100%); padding: 20px; border-radius: 12px;">
-                            <h5 style="color: #6BBF59; margin-bottom: 12px;">🌱 自我认知影响</h5>
-                            <ul style="color: #666; line-height: 1.8; padding-left: 20px; font-size: 0.95em;">
-                                <li>偶尔会自我怀疑或否定</li>
-                                <li>对他人评价比较在意</li>
-                                <li>完美主义倾向</li>
-                                <li>需要外界认可才觉得有价值</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <h3 style="color: #FF8C42; font-size: 1.6em; margin-bottom: 15px;">📋 第一部分:你的家庭健康度深度解析</h3>
+                <div id="fullAnalysis"></div>
             </div>
             
             <div style="background: white; padding: 30px; border-radius: 15px; margin: 25px 0; border-left: 5px solid #FFB347;">
-                <h3 style="color: #FF8C42; font-size: 1.6em; margin-bottom: 15px;">💝 第二部分：疗愈与成长建议</h3>
+                <h3 style="color: #FF8C42; font-size: 1.6em; margin-bottom: 15px;">💝 第二部分:疗愈与成长建议</h3>
                 
-                <h4 style="color: #FF6B35; margin: 20px 0 10px 0;">🌈 疗愈的第一步：看见与接纳</h4>
+                <h4 style="color: #FF6B35; margin: 20px 0 10px 0;">🌈 疗愈的第一步:看见与接纳</h4>
                 <div style="background: #FFF9F0; padding: 20px; border-radius: 12px; margin: 15px 0;">
                     <p style="color: #666; line-height: 1.8; margin-bottom: 12px;">
-                        <strong style="color: #FF8C42;">1. 看见童年的自己：</strong>
-                        闭上眼睛，想象小时候的你。你在经历什么？感受到什么？试着对那个小孩说："我看见你了，你很勇敢。"
+                        <strong style="color: #FF8C42;">1. 看见童年的自己:</strong>
+                        闭上眼睛,想象小时候的你。你在经历什么?感受到什么?试着对那个小孩说:"我看见你了,你很勇敢。"
                     </p>
                     <p style="color: #666; line-height: 1.8; margin-bottom: 12px;">
-                        <strong style="color: #FF8C42;">2. 接纳父母的局限：</strong>
-                        父母也是普通人，他们有自己的创伤和局限。他们给不了你的东西，可能是因为他们自己也没有得到过。
+                        <strong style="color: #FF8C42;">2. 接纳父母的局限:</strong>
+                        父母也是普通人,他们有自己的创伤和局限。他们给不了你的东西,可能是因为他们自己也没有得到过。
                     </p>
                     <p style="color: #666; line-height: 1.8;">
-                        <strong style="color: #FF8C42;">3. 允许自己悲伤：</strong>
-                        为童年没有得到的爱悲伤是正常的。不要压抑这些情绪，给自己时间去感受和释放。
+                        <strong style="color: #FF8C42;">3. 允许自己悲伤:</strong>
+                        为童年没有得到的爱悲伤是正常的。不要压抑这些情绪,给自己时间去感受和释放。
                     </p>
                 </div>
                 
                 <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">📅 30天疗愈计划</h4>
                 <div style="background: linear-gradient(135deg, #E0F8E0 0%, #F0FFF0 100%); padding: 20px; border-radius: 12px; margin: 15px 0;">
                     <p style="color: #555; line-height: 1.8; margin-bottom: 12px;">
-                        <strong style="color: #6BBF59;">第1-10天：自我觉察</strong><br>
-                        每天写日记，记录3个童年记忆和它们如何影响现在的你。允许自己去感受情绪，不评判。
+                        <strong style="color: #6BBF59;">第1-10天:自我觉察</strong><br>
+                        每天写日记,记录3个童年记忆和它们如何影响现在的你。允许自己去感受情绪,不评判。
                     </p>
                     <p style="color: #555; line-height: 1.8; margin-bottom: 12px;">
-                        <strong style="color: #6BBF59;">第11-20天：重建自我</strong><br>
-                        每天对镜子里的自己说3句肯定的话。开始做一件让你快乐的事（画画、运动、音乐等）。
+                        <strong style="color: #6BBF59;">第11-20天:重建自我</strong><br>
+                        每天对镜子里的自己说3句肯定的话。开始做一件让你快乐的事(画画、运动、音乐等)。
                     </p>
                     <p style="color: #555; line-height: 1.8;">
-                        <strong style="color: #6BBF59;">第21-30天：建立新模式</strong><br>
-                        在人际关系中练习设立边界。尝试表达真实感受，即使感到不舒服。
+                        <strong style="color: #6BBF59;">第21-30天:建立新模式</strong><br>
+                        在人际关系中练习设立边界。尝试表达真实感受,即使感到不舒服。
                     </p>
                 </div>
                 
                 <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">📚 推荐疗愈资源</h4>
                 <div style="background: #FFF9F0; padding: 20px; border-radius: 12px; margin: 15px 0;">
-                    <p style="color: #666; margin-bottom: 12px;"><strong style="color: #FF8C42;">📖 必读书籍：</strong></p>
+                    <p style="color: #666; margin-bottom: 12px;"><strong style="color: #FF8C42;">📖 必读书籍:</strong></p>
                     <ul style="color: #666; line-height: 2; padding-left: 20px;">
-                        <li>《原生家庭：如何修补自己的性格缺陷》- 苏珊·福沃德</li>
+                        <li>《原生家庭:如何修补自己的性格缺陷》- 苏珊·福沃德</li>
                         <li>《被忽视的孩子》- 乔尼丝·韦布</li>
                         <li>《身体从未忘记》- 贝塞尔·范德考克</li>
                         <li>《拥抱你的内在小孩》- 一行禅师</li>
                     </ul>
                     
-                    <p style="color: #666; margin: 20px 0 12px 0;"><strong style="color: #FF8C42;">💬 专业帮助：</strong></p>
+                    <p style="color: #666; margin: 20px 0 12px 0;"><strong style="color: #FF8C42;">💬 专业帮助:</strong></p>
                     <ul style="color: #666; line-height: 2; padding-left: 20px;">
-                        <li>简单心理（专业心理咨询平台）</li>
-                        <li>壹心理（在线心理服务）</li>
-                        <li>本地医院心理科（如有严重困扰）</li>
+                        <li>简单心理(专业心理咨询平台)</li>
+                        <li>壹心理(在线心理服务)</li>
+                        <li>本地医院心理科(如有严重困扰)</li>
                     </ul>
                 </div>
             </div>
             
             <div style="background: white; padding: 30px; border-radius: 15px; margin: 25px 0; border-left: 5px solid #FFB347;">
-                <h3 style="color: #FF8C42; font-size: 1.6em; margin-bottom: 15px;">🌟 第三部分：给你的话</h3>
+                <h3 style="color: #FF8C42; font-size: 1.6em; margin-bottom: 15px;">🌟 第三部分:给你的话</h3>
                 
                 <div style="background: linear-gradient(135deg, #FFF9F0 0%, #FFE4E1 100%); padding: 25px; border-radius: 12px; margin: 15px 0; border: 2px solid #FFB347;">
                     <p style="color: #666; line-height: 2; font-size: 1.05em; text-align: center;">
-                        <strong style="color: #FF6B35; font-size: 1.2em;">你不需要"治愈"，因为你从未破碎</strong><br><br>
-                        原生家庭的经历塑造了你，但不能定义你。<br>
-                        你是一个独立的个体，有权利过自己想要的生活。<br><br>
-                        疗愈不是为了成为"更好的人"，<br>
+                        <strong style="color: #FF6B35; font-size: 1.2em;">你不需要"治愈",因为你从未破碎</strong><br><br>
+                        原生家庭的经历塑造了你,但不能定义你。<br>
+                        你是一个独立的个体,有权利过自己想要的生活。<br><br>
+                        疗愈不是为了成为"更好的人",<br>
                         而是为了成为"真实的自己"。<br><br>
-                        请记住：<br>
-                        <strong style="color: #FF8C42;">你值得被爱，你值得幸福，你值得温柔以待。</strong><br><br>
-                        无论童年经历了什么，<br>
-                        现在的你都可以选择给自己一个拥抱，<br>
-                        告诉内心的小孩："我会照顾好你。"
+                        请记住:<br>
+                        <strong style="color: #FF8C42;">你值得被爱,你值得幸福,你值得温柔以待。</strong><br><br>
+                        无论童年经历了什么,<br>
+                        现在的你都可以选择给自己一个拥抱,<br>
+                        告诉内心的小孩:"我会照顾好你。"
                     </p>
                 </div>
             </div>
@@ -826,8 +793,8 @@
             <div style="background: linear-gradient(135deg, #FFB347 0%, #90EE90 100%); color: white; padding: 25px; border-radius: 15px; text-align: center; margin: 25px 0;">
                 <h3 style="margin-bottom: 12px; font-size: 1.4em;">🌈 感谢你的勇气</h3>
                 <p style="font-size: 0.95em; opacity: 0.95; line-height: 1.6;">
-                    能够正视原生家庭问题，这本身就需要很大的勇气<br>
-                    建议保存本页面，在疗愈路上随时回顾<br>
+                    能够正视原生家庭问题,这本身就需要很大的勇气<br>
+                    建议保存本页面,在疗愈路上随时回顾<br>
                     祝你在成长的道路上越来越好 🌱
                 </p>
             </div>
@@ -860,7 +827,7 @@
         const questions = [
             /* 维度A: 情感支持度 (10题) */
             {text: '我的父母经常对我说"我爱你"或类似的话。', dimension: 0},
-            {text: '当我难过时，父母会安慰和倾听我。', dimension: 0},
+            {text: '当我难过时,父母会安慰和倾听我。', dimension: 0},
             {text: '我觉得父母真正关心我的感受。', dimension: 0},
             {text: '我在家里感到被接纳和被爱。', dimension: 0},
             {text: '父母很少表达对我的爱和关心。', dimension: 0, reverse: true},
@@ -874,29 +841,29 @@
             {text: '父母尊重我的隐私和个人空间。', dimension: 1},
             {text: '父母经常翻看我的日记、手机或私人物品。', dimension: 1, reverse: true},
             {text: '我可以自由表达与父母不同的观点。', dimension: 1},
-            {text: '父母总是替我做决定，不征求我的意见。', dimension: 1, reverse: true},
+            {text: '父母总是替我做决定,不征求我的意见。', dimension: 1, reverse: true},
             {text: '家里的规则是合理且公平的。', dimension: 1},
             {text: '父母经常用"为你好"控制我的选择。', dimension: 1, reverse: true},
-            {text: '我有自己的独立空间（房间或私人区域）。', dimension: 1},
+            {text: '我有自己的独立空间(房间或私人区域)。', dimension: 1},
             {text: '父母会用我的秘密威胁或要挟我。', dimension: 1, reverse: true},
             {text: '父母鼓励我培养独立思考能力。', dimension: 1},
-            {text: '我觉得自己像父母的附属品，而非独立个体。', dimension: 1, reverse: true},
+            {text: '我觉得自己像父母的附属品,而非独立个体。', dimension: 1, reverse: true},
             
             /* 维度C: 沟通模式 (10题) */
-            {text: '家里有问题时，我们会坐下来好好沟通。', dimension: 2},
+            {text: '家里有问题时,我们会坐下来好好沟通。', dimension: 2},
             {text: '父母经常对我大吼大叫。', dimension: 2, reverse: true},
             {text: '我敢在父母面前表达真实想法。', dimension: 2},
-            {text: '家里经常冷战，谁也不理谁。', dimension: 2, reverse: true},
+            {text: '家里经常冷战,谁也不理谁。', dimension: 2, reverse: true},
             {text: '父母会认真倾听我的意见。', dimension: 2},
-            {text: '父母经常说伤人的话（贬低、嘲讽）。', dimension: 2, reverse: true},
+            {text: '父母经常说伤人的话(贬低、嘲讽)。', dimension: 2, reverse: true},
             {text: '我们家能平和地解决分歧。', dimension: 2},
             {text: '我小时候经常目睹父母激烈争吵。', dimension: 2, reverse: true},
-            {text: '父母会向我道歉，承认自己的错误。', dimension: 2},
-            {text: '我在家里要小心翼翼，怕说错话。', dimension: 2, reverse: true},
+            {text: '父母会向我道歉,承认自己的错误。', dimension: 2},
+            {text: '我在家里要小心翼翼,怕说错话。', dimension: 2, reverse: true},
             
             /* 维度D: 安全感指数 (10题) */
             {text: '我小时候在家感到安全和放松。', dimension: 3},
-            {text: '我经历过家庭暴力（身体或精神）。', dimension: 3, reverse: true},
+            {text: '我经历过家庭暴力(身体或精神)。', dimension: 3, reverse: true},
             {text: '家里的经济状况比较稳定。', dimension: 3},
             {text: '我小时候经常担心父母会离婚或分开。', dimension: 3, reverse: true},
             {text: '我相信父母会保护我。', dimension: 3},
@@ -904,7 +871,7 @@
             {text: '家里很少发生让我感到恐惧的事。', dimension: 3},
             {text: '我小时候经常被忽视或独自留在家里。', dimension: 3, reverse: true},
             {text: '父母的情绪比较稳定可预测。', dimension: 3},
-            {text: '我小时候经常担惊受怕，不知道下一刻会发生什么。', dimension: 3, reverse: true}
+            {text: '我小时候经常担惊受怕,不知道下一刻会发生什么。', dimension: 3, reverse: true}
         ];
         
         const options = ['完全不符合', '不太符合', '不确定', '比较符合', '非常符合'];
@@ -1097,23 +1064,23 @@
             if (totalScore >= 80) {
                 level = '健康家庭';
                 icon = '🌈';
-                desc = '你拥有一个温暖健康的原生家庭，父母给予了足够的爱和支持。这是很幸运的，请珍惜这份幸福。';
+                desc = '你拥有一个温暖健康的原生家庭,父母给予了足够的爱和支持。这是很幸运的,请珍惜这份幸福。';
             } else if (totalScore >= 60) {
                 level = '轻度创伤';
                 icon = '🌤️';
-                desc = '你的原生家庭存在一些问题，但整体还算健康。这些经历对你有一定影响，但不至于造成严重创伤。';
+                desc = '你的原生家庭存在一些问题,但整体还算健康。这些经历对你有一定影响,但不至于造成严重创伤。';
             } else if (totalScore >= 40) {
                 level = '中度创伤';
                 icon = '⛅';
-                desc = '你的原生家庭存在明显的问题，这些经历对你的成长产生了较大影响。建议寻求专业帮助进行疗愈。';
+                desc = '你的原生家庭存在明显的问题,这些经历对你的成长产生了较大影响。建议寻求专业帮助进行疗愈。';
             } else if (totalScore >= 20) {
                 level = '重度创伤';
                 icon = '🌧️';
-                desc = '你的童年经历了较为严重的创伤，原生家庭给你带来了深刻的伤痕。强烈建议寻求心理咨询师的帮助。';
+                desc = '你的童年经历了较为严重的创伤,原生家庭给你带来了深刻的伤痕。强烈建议寻求心理咨询师的帮助。';
             } else {
                 level = '严重创伤';
                 icon = '⛈️';
-                desc = '你的童年经历了严重的创伤事件，这对你的心理健康产生了重大影响。请务必寻求专业的心理治疗。';
+                desc = '你的童年经历了严重的创伤事件,这对你的心理健康产生了重大影响。请务必寻求专业的心理治疗。';
             }
 
             sessionStorage.setItem('testResult', JSON.stringify({
@@ -1219,7 +1186,7 @@
             
             if (file) {
                 setTimeout(() => {
-                    alert('✅ 付款截图已上传！\n\n完整报告已解锁，请查看下方内容。');
+                    alert('✅ 付款截图已上传!\n\n完整报告已解锁,请查看下方内容。');
                     showFullReport();
                 }, 500);
                 
@@ -1257,22 +1224,96 @@
             const lowest = result.scores.indexOf(Math.min(...result.scores));
             
             const analysisTexts = {
-                0: '你在情感支持度方面得分较低，说明你可能在童年缺乏足够的情感关怀。父母可能不太擅长表达爱，或者他们太忙碌而忽略了你的情感需求。',
-                1: '你在边界健康度方面得分较低，说明父母可能过度控制或侵犯你的隐私。你可能感觉没有自己的空间，或者被当作父母的延伸而非独立个体。',
-                2: '你在沟通模式方面得分较低，说明家庭内部沟通存在问题。可能有冷暴力、语言暴力，或者根本无法好好说话。',
-                3: '你在安全感方面得分较低，说明童年环境不够稳定安全。可能经历过家庭暴力、父母争吵、经济困难等让你感到不安的事件。'
+                0: '你在情感支持度方面得分较低,说明你可能在童年缺乏足够的情感关怀。父母可能不太擅长表达爱,或者他们太忙碌而忽略了你的情感需求。',
+                1: '你在边界健康度方面得分较低,说明父母可能过度控制或侵犯你的隐私。你可能感觉没有自己的空间,或者被当作父母的延伸而非独立个体。',
+                2: '你在沟通模式方面得分较低,说明家庭内部沟通存在问题。可能有冷暴力、语言暴力,或者根本无法好好说话。',
+                3: '你在安全感方面得分较低,说明童年环境不够稳定安全。可能经历过家庭暴力、父母争吵、经济困难等让你感到不安的事件。'
+            };
+            
+            const impactDescriptions = {
+                0: `
+                    <h5 style="color: #FF8C42; margin-bottom: 12px;">💔 情感缺失的影响</h5>
+                    <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
+                        <li>难以信任他人,总觉得不配被爱</li>
+                        <li>在亲密关系中过度付出或过度冷漠</li>
+                        <li>情感表达困难,习惯压抑情绪</li>
+                        <li>自我价值感低,需要不断寻求外界认可</li>
+                    </ul>
+                `,
+                1: `
+                    <h5 style="color: #FF8C42; margin-bottom: 12px;">🚪 边界不清的影响</h5>
+                    <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
+                        <li>不懂拒绝,总是委屈自己成全他人</li>
+                        <li>或走向另一个极端:过度防御,难以亲近</li>
+                        <li>缺乏自我认同,容易被他人意见左右</li>
+                        <li>在关系中找不到舒适的距离感</li>
+                    </ul>
+                `,
+                2: `
+                    <h5 style="color: #FF8C42; margin-bottom: 12px;">💬 沟通障碍的影响</h5>
+                    <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
+                        <li>习惯冷暴力或激烈争吵,不会平和表达</li>
+                        <li>害怕冲突,宁愿压抑也不敢说出真实想法</li>
+                        <li>容易误解他人,也容易被误解</li>
+                        <li>在关系中总是"猜来猜去",缺乏安全感</li>
+                    </ul>
+                `,
+                3: `
+                    <h5 style="color: #FF8C42; margin-bottom: 12px;">🛡️ 缺乏安全感的影响</h5>
+                    <ul style="color: #666; line-height: 1.8; padding-left: 20px;">
+                        <li>对未来充满焦虑和不确定感</li>
+                        <li>在关系中过度依赖或过度独立</li>
+                        <li>容易被创伤记忆困扰,出现情绪失控</li>
+                        <li>难以建立稳定长久的关系</li>
+                    </ul>
+                `
             };
             
             const fullAnalysis = document.getElementById('fullAnalysis');
             if (fullAnalysis) {
-                const personalizedText = analysisTexts[lowest] || '你的原生家庭在各方面都有一定问题。';
-                const firstP = fullAnalysis.querySelector('p');
-                if (firstP) {
-                    firstP.textContent = personalizedText + ' 但请记住，童年的经历不能定义你，你可以通过疗愈成为更好的自己。';
-                }
+                const analysisHTML = `
+                    <h4 style="color: #FF6B35; margin: 20px 0 10px 0;">🏠 你的家庭类型:${result.level}</h4>
+                    <p style="color: #666; line-height: 1.8;">
+                        你的原生家庭健康度为${result.totalScore}%,属于${result.level}类型。
+                        ${result.desc}
+                        <br><br>
+                        你的最大挑战领域是:<strong style="color: #FF6B35;">${dimensionNames[lowest]}</strong>。
+                        <br>
+                        ${analysisTexts[lowest]}
+                    </p>
+                    
+                    <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">🎯 这如何影响你的现在?</h4>
+                    <div style="background: linear-gradient(135deg, #FFF9F0 0%, #FFE4E1 100%); padding: 20px; border-radius: 12px; margin: 15px 0;">
+                        ${impactDescriptions[lowest]}
+                    </div>
+                    
+                    <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">🌱 四个维度详细分析</h4>
+                    <div style="display: grid; gap: 15px; margin: 15px 0;">
+                        ${result.scores.map((score, i) => `
+                            <div style="background: ${i === lowest ? 'linear-gradient(135deg, #FFE4E1 0%, #FFF9F0 100%)' : '#F8F9FA'}; padding: 18px; border-radius: 12px; border-left: 4px solid ${i === lowest ? '#FF6B35' : '#FFB347'};">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                    <strong style="color: #FF8C42; font-size: 1.1em;">${['💝', '🚪', '💬', '🛡️'][i]} ${dimensionNames[i]}</strong>
+                                    <span style="font-size: 1.4em; font-weight: bold; color: ${score > 70 ? '#6BBF59' : score > 50 ? '#FFB347' : '#FF6B35'};">${score}%</span>
+                                </div>
+                                <p style="color: #666; font-size: 0.95em; line-height: 1.6; margin: 0;">
+                                    ${score > 70 ? '这个维度表现良好,继续保持!' : 
+                                      score > 50 ? '这个维度有待提升,但并非严重问题。' :
+                                      score > 30 ? '这个维度需要重点关注和疗愈。' :
+                                      '这个维度受创较深,建议寻求专业帮助。'}
+                                </p>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <p style="color: #666; line-height: 1.8; margin-top: 20px; padding: 15px; background: #F0FFF0; border-radius: 10px; border-left: 4px solid #6BBF59;">
+                        <strong style="color: #6BBF59;">💡 请记住:</strong> 童年的经历不能定义你,你可以通过疗愈成为更好的自己。下面的疗愈指南会帮助你开启这段旅程。
+                    </p>
+                `;
+                
+                fullAnalysis.innerHTML = analysisHTML;
             }
             
-            window.scrollTo(0, 0);
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
         function backToMain() {
@@ -1374,7 +1415,7 @@
                 
                 <h3 style="color: #FF8C42; margin: 30px 0 15px 0; font-size: 1.3em;">🔑 生成新卡密</h3>
                 <div class="input-group">
-                    <input type="number" id="cardCount" placeholder="输入生成数量（1-100）" min="1" max="100" value="10" style="background: white;">
+                    <input type="number" id="cardCount" placeholder="输入生成数量(1-100)" min="1" max="100" value="10" style="background: white;">
                 </div>
                 <button class="btn btn-primary" onclick="generateCards()">🎁 生成卡密</button>
                 
@@ -1432,7 +1473,7 @@
             a.click();
             URL.revokeObjectURL(url);
             
-            alert(`成功生成${count}个卡密！`);
+            alert(`成功生成${count}个卡密!`);
             loadAdminStats();
         }
         
@@ -1464,7 +1505,7 @@
                     });
                 }
                 localStorage.setItem('familyCards', JSON.stringify(testCards));
-                console.log('已生成10个测试卡密，请在管理员后台查看（密码：lss900201）');
+                console.log('已生成10个测试卡密,请在管理员后台查看(密码:lss900201)');
             }
         };
     </script>
