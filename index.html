@@ -710,33 +710,8 @@
             
             <div style="background: white; padding: 30px; border-radius: 15px; margin: 25px 0; border-left: 5px solid #FFB347;">
                 <h3 style="color: #FF8C42; font-size: 1.6em; margin-bottom: 15px;">📋 第一部分：你的家庭健康度深度解析</h3>
-                <div id="fullAnalysis">
-                    <h4 style="color: #FF6B35; margin: 20px 0 10px 0;">🏠 你的家庭类型：轻度创伤家庭</h4>
-                    <p style="color: #666; line-height: 1.8;">
-                        你的原生家庭健康度为68%，属于轻度创伤类型。虽然存在一些问题，但整体环境还算稳定。
-                        你的父母可能在某些方面做得不够好（比如情感表达、边界尊重等），但他们也有爱你的方式。
-                        这些经历对你产生了一定影响，但不至于造成严重的心理创伤。
-                    </p>
-                    
-                    <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">💡 各维度详细分析</h4>
-                    <div style="background: #FFF9F0; padding: 20px; border-radius: 12px; margin: 15px 0;">
-                        <p style="color: #666; line-height: 1.8; margin-bottom: 12px;"><strong style="color: #FF8C42;">情感支持度：</strong>你的父母可能不太擅长表达爱，但他们的关心以其他方式体现（比如物质供养、督促学习）。你可能渴望更多的情感回应和认可。</p>
-                        <p style="color: #666; line-height: 1.8; margin-bottom: 12px;"><strong style="color: #FF8C42;">边界健康度：</strong>父母可能有时会过度干涉你的生活，或者相反，对你疏于关注。你可能在建立个人边界方面感到困难。</p>
-                        <p style="color: #666; line-height: 1.8; margin-bottom: 12px;"><strong style="color: #FF8C42;">沟通模式：</strong>家里可能存在沟通不畅的问题，或者有时会用不太健康的方式（比如冷战、指责）解决冲突。</p>
-                        <p style="color: #666; line-height: 1.8;"><strong style="color: #FF8C42;">安全感指数：</strong>整体环境相对稳定，但可能有一些让你感到不安的因素（比如父母争吵、经济压力等）。</p>
-                    </div>
-                    
-                    <h4 style="color: #FF6B35; margin: 25px 0 10px 0;">🎯 对当前生活的影响</h4>
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 15px 0;">
-                        <div style="background: linear-gradient(135deg, #FFE4E1 0%, #FFF0F5 100%); padding: 20px; border-radius: 12px;">
-                            <h5 style="color: #FF6B35; margin-bottom: 12px;">💔 亲密关系影响</h5>
-                            <ul style="color: #666; line-height: 1.8; padding-left: 20px; font-size: 0.95em;">
-                                <li>可能害怕被抛弃或拒绝</li>
-                                <li>在表达情感时感到困难</li>
-                                <li>对伴侣的某些行为过度敏感</li>
-                                <li>容易陷入不安全的依恋模式</li>
-                            </ul>
-                        </div>
+             <div id="fullAnalysis">
+    </div>
                         <div style="background: linear-gradient(135deg, #E0F8E0 0%, #F0FFF0 100%); padding: 20px; border-radius: 12px;">
                             <h5 style="color: #6BBF59; margin-bottom: 12px;">🌱 自我认知影响</h5>
                             <ul style="color: #666; line-height: 1.8; padding-left: 20px; font-size: 0.95em;">
@@ -1264,13 +1239,27 @@
             };
             
             const fullAnalysis = document.getElementById('fullAnalysis');
-            if (fullAnalysis) {
-                const personalizedText = analysisTexts[lowest] || '你的原生家庭在各方面都有一定问题。';
-                const firstP = fullAnalysis.querySelector('p');
-                if (firstP) {
-                    firstP.textContent = personalizedText + ' 但请记住，童年的经历不能定义你，你可以通过疗愈成为更好的自己。';
-                }
-            }
+           if (fullAnalysis) {
+    const lowestDimensionName = dimensionNames[lowest];
+    const lowestDimensionAnalysis = analysisTexts[lowest]; // 获取最低维度的详细分析
+    
+    // 动态生成包含标题和描述的 HTML 字符串
+    const analysisHTML = `
+        <h4 style="color: #FF6B35; margin: 20px 0 10px 0;">🏠 你的家庭类型：${result.level}</h4>
+        <p style="color: #666; line-height: 1.8;">
+            你的原生家庭健康度为${result.totalScore}%，属于${result.level}类型。
+            ${result.desc} 
+            <br><br>
+            你的最大挑战领域是：<strong style="color: #FF6B35;">${lowestDimensionName}</strong>。
+            <br>
+            ${lowestDimensionAnalysis}
+            <br><br>
+            请记住，童年的经历不能定义你，你可以通过疗愈成为更好的自己。
+        </p>
+    `;
+
+    fullAnalysis.innerHTML = analysisHTML; // 注入完整的动态内容
+}
             
             window.scrollTo(0, 0);
         }
