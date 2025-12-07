@@ -934,11 +934,11 @@ var _hmt = _hmt || [];
             const cardInput = document.getElementById('cardInput');
             const cardCode = cardInput.value.trim().toUpperCase();
             
-            if (cardCode === MASTER_CODE) {
-                currentCard = MASTER_CODE;
-                showTestPage(); 
-                return;
-            }
+if (cardCode === MASTER_CODE) {
+    currentCard = { code: MASTER_CODE, isMaster: true };
+    showTestPage(); 
+    return;
+}
             
             if (!cardCode) {
                 alert('请输入测评卡号');
